@@ -1,0 +1,1730 @@
+{
+ "format": "qe-compass-sample",
+ "entities": [
+  {
+   "id": 1,
+   "parent_id": null,
+   "type": "lob",
+   "name": "Booking & Payments",
+   "apps": 12,
+   "art": "Reservations & Commerce ART",
+   "owner": "Product Owner, Reservations",
+   "criticality": "High",
+   "position": 1
+  },
+  {
+   "id": 2,
+   "parent_id": null,
+   "type": "lob",
+   "name": "Digital Customer Journeys",
+   "apps": 18,
+   "art": "Digital Experience ART",
+   "owner": "Director, Digital Products",
+   "criticality": "High",
+   "position": 0
+  },
+  {
+   "id": 3,
+   "parent_id": null,
+   "type": "lob",
+   "name": "Oracle HCM",
+   "apps": 6,
+   "art": "Enterprise Platforms",
+   "owner": "HRIS Application Manager",
+   "criticality": "Medium",
+   "position": 2
+  },
+  {
+   "id": 4,
+   "parent_id": null,
+   "type": "lob",
+   "name": "Maximo",
+   "apps": 9,
+   "art": "Fleet & Terminal Asset Mgmt",
+   "owner": "EAM Platform Lead",
+   "criticality": "High",
+   "position": 3
+  },
+  {
+   "id": 5,
+   "parent_id": null,
+   "type": "lob",
+   "name": "ARTs & Shared Services",
+   "apps": 24,
+   "art": "Integration, Data & Identity",
+   "owner": "Head of Enterprise Architecture",
+   "criticality": "Medium",
+   "position": 4
+  },
+  {
+   "id": 6,
+   "parent_id": 1,
+   "type": "program",
+   "name": "Fare & Payments Modernization",
+   "apps": 4,
+   "art": "Reservations & Commerce ART",
+   "owner": "Program Manager, Fare Modernization",
+   "criticality": "High",
+   "position": 5
+  },
+  {
+   "id": 7,
+   "parent_id": 2,
+   "type": "app",
+   "name": "bcferries.com Booking Engine",
+   "apps": 1,
+   "art": "Digital Experience ART",
+   "owner": "Product Owner, Booking Web",
+   "criticality": "High",
+   "position": 6
+  },
+  {
+   "id": 8,
+   "parent_id": 4,
+   "type": "app",
+   "name": "Maximo Mobile (Fleet Technicians)",
+   "apps": 1,
+   "art": "Fleet & Terminal Asset Mgmt",
+   "owner": "EAM Mobile Lead",
+   "criticality": "Medium",
+   "position": 7
+  }
+ ],
+ "assessments": [
+  {
+   "entity_id": 1,
+   "focus_area_id": 101,
+   "score": 3,
+   "confidence": "med",
+   "notes": "Defined in some teams; consistency and measurement across Booking & Payments still to be validated.",
+   "rel": -692196
+  },
+  {
+   "entity_id": 1,
+   "focus_area_id": 102,
+   "score": 3,
+   "confidence": "med",
+   "notes": "Defined in some teams; consistency and measurement across Booking & Payments still to be validated.",
+   "rel": -334968
+  },
+  {
+   "entity_id": 1,
+   "focus_area_id": 103,
+   "score": 2,
+   "confidence": "low",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for automation engineering in Booking & Payments.",
+   "rel": -315213
+  },
+  {
+   "entity_id": 1,
+   "focus_area_id": 104,
+   "score": 2,
+   "confidence": "high",
+   "notes": "Peak-load test last run before the 2025 summer season; no baseline yet for long-weekend sailing demand.",
+   "rel": -354341
+  },
+  {
+   "entity_id": 1,
+   "focus_area_id": 105,
+   "score": 2,
+   "confidence": "high",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for environment, data & virtualization in Booking & Payments.",
+   "rel": -582888
+  },
+  {
+   "entity_id": 1,
+   "focus_area_id": 202,
+   "score": 3,
+   "confidence": "low",
+   "notes": "Defined in some teams; consistency and measurement across Booking & Payments still to be validated.",
+   "rel": -479031
+  },
+  {
+   "entity_id": 1,
+   "focus_area_id": 203,
+   "score": 3,
+   "confidence": "high",
+   "notes": "Defects tracked in Jira with ageing visible; escaped-defect leakage to production is not measured.",
+   "rel": -643081
+  },
+  {
+   "entity_id": 1,
+   "focus_area_id": 204,
+   "score": 3,
+   "confidence": "med",
+   "notes": "Defined in some teams; consistency and measurement across Booking & Payments still to be validated.",
+   "rel": -384661
+  },
+  {
+   "entity_id": 1,
+   "focus_area_id": 205,
+   "score": 2,
+   "confidence": "med",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for release confidence management in Booking & Payments.",
+   "rel": -561322
+  },
+  {
+   "entity_id": 1,
+   "focus_area_id": 301,
+   "score": 3,
+   "confidence": "high",
+   "notes": "Defined in some teams; consistency and measurement across Booking & Payments still to be validated.",
+   "rel": -199903
+  },
+  {
+   "entity_id": 1,
+   "focus_area_id": 302,
+   "score": 3,
+   "confidence": "med",
+   "notes": "Defined in some teams; consistency and measurement across Booking & Payments still to be validated.",
+   "rel": -572499
+  },
+  {
+   "entity_id": 1,
+   "focus_area_id": 303,
+   "score": 3,
+   "confidence": "high",
+   "notes": "Defined in some teams; consistency and measurement across Booking & Payments still to be validated.",
+   "rel": -700432
+  },
+  {
+   "entity_id": 1,
+   "focus_area_id": 304,
+   "score": 2,
+   "confidence": "med",
+   "notes": "PCI evidence is assembled manually per release from email threads and spreadsheets.",
+   "rel": -639288
+  },
+  {
+   "entity_id": 1,
+   "focus_area_id": 305,
+   "score": 2,
+   "confidence": "high",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for portfolio, partner & value governance in Booking & Payments.",
+   "rel": -553341
+  },
+  {
+   "entity_id": 1,
+   "focus_area_id": 401,
+   "score": 3,
+   "confidence": "high",
+   "notes": "Defined in some teams; consistency and measurement across Booking & Payments still to be validated.",
+   "rel": -176283
+  },
+  {
+   "entity_id": 1,
+   "focus_area_id": 402,
+   "score": 2,
+   "confidence": "med",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for capability intelligence & gap analysis in Booking & Payments.",
+   "rel": -337130
+  },
+  {
+   "entity_id": 1,
+   "focus_area_id": 403,
+   "score": 3,
+   "confidence": "low",
+   "notes": "Defined in some teams; consistency and measurement across Booking & Payments still to be validated.",
+   "rel": -36676
+  },
+  {
+   "entity_id": 1,
+   "focus_area_id": 404,
+   "score": 3,
+   "confidence": "med",
+   "notes": "Defined in some teams; consistency and measurement across Booking & Payments still to be validated.",
+   "rel": -697501
+  },
+  {
+   "entity_id": 1,
+   "focus_area_id": 405,
+   "score": 3,
+   "confidence": "low",
+   "notes": "Defined in some teams; consistency and measurement across Booking & Payments still to be validated.",
+   "rel": -662974
+  },
+  {
+   "entity_id": 1,
+   "focus_area_id": 502,
+   "score": 2,
+   "confidence": "low",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for ai-augmented & agentic qe in Booking & Payments.",
+   "rel": -759735
+  },
+  {
+   "entity_id": 1,
+   "focus_area_id": 505,
+   "score": 1,
+   "confidence": "low",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for autonomous resilience engineering in Booking & Payments.",
+   "rel": -762581
+  },
+  {
+   "entity_id": 2,
+   "focus_area_id": 101,
+   "score": 4,
+   "confidence": "high",
+   "notes": "Repeatable practice with evidence in tooling. Candidate pattern for reuse across other LOBs.",
+   "rel": -621944
+  },
+  {
+   "entity_id": 2,
+   "focus_area_id": 102,
+   "score": 3,
+   "confidence": "low",
+   "notes": "Defined in some teams; consistency and measurement across Digital Customer Journeys still to be validated.",
+   "rel": -17447
+  },
+  {
+   "entity_id": 2,
+   "focus_area_id": 103,
+   "score": 3,
+   "confidence": "high",
+   "notes": "Cypress suite of ~1,200 web booking tests runs nightly; team reports roughly 30% of runs need flaky-test reruns.",
+   "rel": -592606
+  },
+  {
+   "entity_id": 2,
+   "focus_area_id": 104,
+   "score": 3,
+   "confidence": "low",
+   "notes": "Defined in some teams; consistency and measurement across Digital Customer Journeys still to be validated.",
+   "rel": -668856
+  },
+  {
+   "entity_id": 2,
+   "focus_area_id": 105,
+   "score": 3,
+   "confidence": "high",
+   "notes": "Defined in some teams; consistency and measurement across Digital Customer Journeys still to be validated.",
+   "rel": -182367
+  },
+  {
+   "entity_id": 2,
+   "focus_area_id": 201,
+   "score": 3,
+   "confidence": "med",
+   "notes": "Defined in some teams; consistency and measurement across Digital Customer Journeys still to be validated.",
+   "rel": -204534
+  },
+  {
+   "entity_id": 2,
+   "focus_area_id": 202,
+   "score": 2,
+   "confidence": "high",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for test orchestration & flow in Digital Customer Journeys.",
+   "rel": -139743
+  },
+  {
+   "entity_id": 2,
+   "focus_area_id": 203,
+   "score": 3,
+   "confidence": "high",
+   "notes": "Defined in some teams; consistency and measurement across Digital Customer Journeys still to be validated.",
+   "rel": -664430
+  },
+  {
+   "entity_id": 2,
+   "focus_area_id": 204,
+   "score": 3,
+   "confidence": "med",
+   "notes": "Team-level Jira dashboards exist; no cross-ART view of coverage or escaped defects.",
+   "rel": -322358
+  },
+  {
+   "entity_id": 2,
+   "focus_area_id": 205,
+   "score": 3,
+   "confidence": "low",
+   "notes": "Defined in some teams; consistency and measurement across Digital Customer Journeys still to be validated.",
+   "rel": -276892
+  },
+  {
+   "entity_id": 2,
+   "focus_area_id": 302,
+   "score": 3,
+   "confidence": "high",
+   "notes": "Defined in some teams; consistency and measurement across Digital Customer Journeys still to be validated.",
+   "rel": -541276
+  },
+  {
+   "entity_id": 2,
+   "focus_area_id": 303,
+   "score": 3,
+   "confidence": "low",
+   "notes": "Defined in some teams; consistency and measurement across Digital Customer Journeys still to be validated.",
+   "rel": -63834
+  },
+  {
+   "entity_id": 2,
+   "focus_area_id": 304,
+   "score": 3,
+   "confidence": "med",
+   "notes": "Defined in some teams; consistency and measurement across Digital Customer Journeys still to be validated.",
+   "rel": -50042
+  },
+  {
+   "entity_id": 2,
+   "focus_area_id": 305,
+   "score": 2,
+   "confidence": "high",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for portfolio, partner & value governance in Digital Customer Journeys.",
+   "rel": -205071
+  },
+  {
+   "entity_id": 2,
+   "focus_area_id": 401,
+   "score": 2,
+   "confidence": "high",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for modern qe roles & skill architecture in Digital Customer Journeys.",
+   "rel": -510721
+  },
+  {
+   "entity_id": 2,
+   "focus_area_id": 403,
+   "score": 3,
+   "confidence": "high",
+   "notes": "Defined in some teams; consistency and measurement across Digital Customer Journeys still to be validated.",
+   "rel": -312410
+  },
+  {
+   "entity_id": 2,
+   "focus_area_id": 404,
+   "score": 2,
+   "confidence": "high",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for knowledge, assets & innersource in Digital Customer Journeys.",
+   "rel": -334268
+  },
+  {
+   "entity_id": 2,
+   "focus_area_id": 501,
+   "score": 1,
+   "confidence": "high",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for continuous quality engineering in Digital Customer Journeys.",
+   "rel": -200759
+  },
+  {
+   "entity_id": 2,
+   "focus_area_id": 503,
+   "score": 2,
+   "confidence": "low",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for predictive quality intelligence in Digital Customer Journeys.",
+   "rel": -676946
+  },
+  {
+   "entity_id": 3,
+   "focus_area_id": 101,
+   "score": 1,
+   "confidence": "med",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for testability & quality-by-design in Oracle HCM.",
+   "rel": -748963
+  },
+  {
+   "entity_id": 3,
+   "focus_area_id": 103,
+   "score": 1,
+   "confidence": "high",
+   "notes": "Quarterly Oracle updates are regression-tested manually over about two weeks.",
+   "rel": -674723
+  },
+  {
+   "entity_id": 3,
+   "focus_area_id": 104,
+   "score": 2,
+   "confidence": "med",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for performance, accessibility & resilience in Oracle HCM.",
+   "rel": -471410
+  },
+  {
+   "entity_id": 3,
+   "focus_area_id": 105,
+   "score": 3,
+   "confidence": "low",
+   "notes": "Defined in some teams; consistency and measurement across Oracle HCM still to be validated.",
+   "rel": -91991
+  },
+  {
+   "entity_id": 3,
+   "focus_area_id": 201,
+   "score": 2,
+   "confidence": "med",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for quality planning & forecasting in Oracle HCM.",
+   "rel": -422551
+  },
+  {
+   "entity_id": 3,
+   "focus_area_id": 202,
+   "score": 2,
+   "confidence": "low",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for test orchestration & flow in Oracle HCM.",
+   "rel": -750022
+  },
+  {
+   "entity_id": 3,
+   "focus_area_id": 204,
+   "score": 2,
+   "confidence": "high",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for quality observability & insights in Oracle HCM.",
+   "rel": -356164
+  },
+  {
+   "entity_id": 3,
+   "focus_area_id": 205,
+   "score": 3,
+   "confidence": "low",
+   "notes": "Defined in some teams; consistency and measurement across Oracle HCM still to be validated.",
+   "rel": -410575
+  },
+  {
+   "entity_id": 3,
+   "focus_area_id": 301,
+   "score": 2,
+   "confidence": "med",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for enterprise qe strategy & operating model in Oracle HCM.",
+   "rel": -708065
+  },
+  {
+   "entity_id": 3,
+   "focus_area_id": 302,
+   "score": 3,
+   "confidence": "high",
+   "notes": "Defined in some teams; consistency and measurement across Oracle HCM still to be validated.",
+   "rel": -656547
+  },
+  {
+   "entity_id": 3,
+   "focus_area_id": 303,
+   "score": 3,
+   "confidence": "med",
+   "notes": "Defined in some teams; consistency and measurement across Oracle HCM still to be validated.",
+   "rel": -95131
+  },
+  {
+   "entity_id": 3,
+   "focus_area_id": 304,
+   "score": 2,
+   "confidence": "med",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for quality risk, assurance & compliance in Oracle HCM.",
+   "rel": -606133
+  },
+  {
+   "entity_id": 3,
+   "focus_area_id": 401,
+   "score": 2,
+   "confidence": "med",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for modern qe roles & skill architecture in Oracle HCM.",
+   "rel": -537662
+  },
+  {
+   "entity_id": 3,
+   "focus_area_id": 402,
+   "score": 2,
+   "confidence": "med",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for capability intelligence & gap analysis in Oracle HCM.",
+   "rel": -655317
+  },
+  {
+   "entity_id": 3,
+   "focus_area_id": 403,
+   "score": 1,
+   "confidence": "high",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for continuous learning & enablement in Oracle HCM.",
+   "rel": -725620
+  },
+  {
+   "entity_id": 3,
+   "focus_area_id": 404,
+   "score": 2,
+   "confidence": "med",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for knowledge, assets & innersource in Oracle HCM.",
+   "rel": -133428
+  },
+  {
+   "entity_id": 3,
+   "focus_area_id": 405,
+   "score": 2,
+   "confidence": "med",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for qe coe, guilds & expert communities in Oracle HCM.",
+   "rel": -621677
+  },
+  {
+   "entity_id": 3,
+   "focus_area_id": 501,
+   "score": 2,
+   "confidence": "high",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for continuous quality engineering in Oracle HCM.",
+   "rel": -755261
+  },
+  {
+   "entity_id": 3,
+   "focus_area_id": 502,
+   "score": 2,
+   "confidence": "med",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for ai-augmented & agentic qe in Oracle HCM.",
+   "rel": -53209
+  },
+  {
+   "entity_id": 3,
+   "focus_area_id": 503,
+   "score": 1,
+   "confidence": "high",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for predictive quality intelligence in Oracle HCM.",
+   "rel": -745530
+  },
+  {
+   "entity_id": 4,
+   "focus_area_id": 101,
+   "score": 1,
+   "confidence": "med",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for testability & quality-by-design in Maximo.",
+   "rel": -174024
+  },
+  {
+   "entity_id": 4,
+   "focus_area_id": 102,
+   "score": 2,
+   "confidence": "low",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for end-to-end, api & integration quality in Maximo.",
+   "rel": -197126
+  },
+  {
+   "entity_id": 4,
+   "focus_area_id": 103,
+   "score": 2,
+   "confidence": "med",
+   "notes": "A small Selenium pack covers work-order creation only; most regression is manual.",
+   "rel": -191910
+  },
+  {
+   "entity_id": 4,
+   "focus_area_id": 104,
+   "score": 2,
+   "confidence": "high",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for performance, accessibility & resilience in Maximo.",
+   "rel": -136350
+  },
+  {
+   "entity_id": 4,
+   "focus_area_id": 105,
+   "score": 1,
+   "confidence": "high",
+   "notes": "Single shared test environment; refreshes take 3–4 weeks and routinely block regression.",
+   "rel": -675346
+  },
+  {
+   "entity_id": 4,
+   "focus_area_id": 202,
+   "score": 3,
+   "confidence": "med",
+   "notes": "Defined in some teams; consistency and measurement across Maximo still to be validated.",
+   "rel": -497001
+  },
+  {
+   "entity_id": 4,
+   "focus_area_id": 203,
+   "score": 3,
+   "confidence": "low",
+   "notes": "Defined in some teams; consistency and measurement across Maximo still to be validated.",
+   "rel": -151626
+  },
+  {
+   "entity_id": 4,
+   "focus_area_id": 204,
+   "score": 2,
+   "confidence": "med",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for quality observability & insights in Maximo.",
+   "rel": -474026
+  },
+  {
+   "entity_id": 4,
+   "focus_area_id": 301,
+   "score": 2,
+   "confidence": "low",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for enterprise qe strategy & operating model in Maximo.",
+   "rel": -161265
+  },
+  {
+   "entity_id": 4,
+   "focus_area_id": 302,
+   "score": 2,
+   "confidence": "high",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for engineering standards & guardrails in Maximo.",
+   "rel": -577181
+  },
+  {
+   "entity_id": 4,
+   "focus_area_id": 303,
+   "score": 2,
+   "confidence": "med",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for automated quality gates in Maximo.",
+   "rel": -701211
+  },
+  {
+   "entity_id": 4,
+   "focus_area_id": 304,
+   "score": 2,
+   "confidence": "high",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for quality risk, assurance & compliance in Maximo.",
+   "rel": -618442
+  },
+  {
+   "entity_id": 4,
+   "focus_area_id": 305,
+   "score": 3,
+   "confidence": "med",
+   "notes": "Defined in some teams; consistency and measurement across Maximo still to be validated.",
+   "rel": -135985
+  },
+  {
+   "entity_id": 4,
+   "focus_area_id": 401,
+   "score": 2,
+   "confidence": "med",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for modern qe roles & skill architecture in Maximo.",
+   "rel": -320005
+  },
+  {
+   "entity_id": 4,
+   "focus_area_id": 402,
+   "score": 2,
+   "confidence": "med",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for capability intelligence & gap analysis in Maximo.",
+   "rel": -169150
+  },
+  {
+   "entity_id": 4,
+   "focus_area_id": 403,
+   "score": 2,
+   "confidence": "high",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for continuous learning & enablement in Maximo.",
+   "rel": -250529
+  },
+  {
+   "entity_id": 4,
+   "focus_area_id": 404,
+   "score": 3,
+   "confidence": "med",
+   "notes": "Defined in some teams; consistency and measurement across Maximo still to be validated.",
+   "rel": -662064
+  },
+  {
+   "entity_id": 4,
+   "focus_area_id": 405,
+   "score": 2,
+   "confidence": "high",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for qe coe, guilds & expert communities in Maximo.",
+   "rel": -521063
+  },
+  {
+   "entity_id": 4,
+   "focus_area_id": 505,
+   "score": 1,
+   "confidence": "high",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for autonomous resilience engineering in Maximo.",
+   "rel": -493086
+  },
+  {
+   "entity_id": 5,
+   "focus_area_id": 101,
+   "score": 3,
+   "confidence": "med",
+   "notes": "Defined in some teams; consistency and measurement across ARTs & Shared Services still to be validated.",
+   "rel": -143876
+  },
+  {
+   "entity_id": 5,
+   "focus_area_id": 102,
+   "score": 2,
+   "confidence": "med",
+   "notes": "Integration layer has API tests but no contract tests with downstream partners.",
+   "rel": -326374
+  },
+  {
+   "entity_id": 5,
+   "focus_area_id": 103,
+   "score": 2,
+   "confidence": "high",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for automation engineering in ARTs & Shared Services.",
+   "rel": -44644
+  },
+  {
+   "entity_id": 5,
+   "focus_area_id": 104,
+   "score": 3,
+   "confidence": "low",
+   "notes": "Defined in some teams; consistency and measurement across ARTs & Shared Services still to be validated.",
+   "rel": -82145
+  },
+  {
+   "entity_id": 5,
+   "focus_area_id": 105,
+   "score": 3,
+   "confidence": "high",
+   "notes": "Defined in some teams; consistency and measurement across ARTs & Shared Services still to be validated.",
+   "rel": -346202
+  },
+  {
+   "entity_id": 5,
+   "focus_area_id": 201,
+   "score": 2,
+   "confidence": "med",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for quality planning & forecasting in ARTs & Shared Services.",
+   "rel": -468889
+  },
+  {
+   "entity_id": 5,
+   "focus_area_id": 202,
+   "score": 3,
+   "confidence": "med",
+   "notes": "Defined in some teams; consistency and measurement across ARTs & Shared Services still to be validated.",
+   "rel": -277554
+  },
+  {
+   "entity_id": 5,
+   "focus_area_id": 203,
+   "score": 2,
+   "confidence": "med",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for defect intelligence & rca in ARTs & Shared Services.",
+   "rel": -634662
+  },
+  {
+   "entity_id": 5,
+   "focus_area_id": 204,
+   "score": 2,
+   "confidence": "med",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for quality observability & insights in ARTs & Shared Services.",
+   "rel": -755078
+  },
+  {
+   "entity_id": 5,
+   "focus_area_id": 205,
+   "score": 3,
+   "confidence": "med",
+   "notes": "Defined in some teams; consistency and measurement across ARTs & Shared Services still to be validated.",
+   "rel": -424629
+  },
+  {
+   "entity_id": 5,
+   "focus_area_id": 301,
+   "score": 2,
+   "confidence": "low",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for enterprise qe strategy & operating model in ARTs & Shared Services.",
+   "rel": -142016
+  },
+  {
+   "entity_id": 5,
+   "focus_area_id": 302,
+   "score": 1,
+   "confidence": "med",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for engineering standards & guardrails in ARTs & Shared Services.",
+   "rel": -203551
+  },
+  {
+   "entity_id": 5,
+   "focus_area_id": 304,
+   "score": 2,
+   "confidence": "high",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for quality risk, assurance & compliance in ARTs & Shared Services.",
+   "rel": -488769
+  },
+  {
+   "entity_id": 5,
+   "focus_area_id": 305,
+   "score": 2,
+   "confidence": "low",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for portfolio, partner & value governance in ARTs & Shared Services.",
+   "rel": -502176
+  },
+  {
+   "entity_id": 5,
+   "focus_area_id": 401,
+   "score": 3,
+   "confidence": "med",
+   "notes": "Defined in some teams; consistency and measurement across ARTs & Shared Services still to be validated.",
+   "rel": -729017
+  },
+  {
+   "entity_id": 5,
+   "focus_area_id": 402,
+   "score": 3,
+   "confidence": "high",
+   "notes": "Defined in some teams; consistency and measurement across ARTs & Shared Services still to be validated.",
+   "rel": -41200
+  },
+  {
+   "entity_id": 5,
+   "focus_area_id": 403,
+   "score": 2,
+   "confidence": "med",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for continuous learning & enablement in ARTs & Shared Services.",
+   "rel": -589408
+  },
+  {
+   "entity_id": 5,
+   "focus_area_id": 404,
+   "score": 3,
+   "confidence": "low",
+   "notes": "Defined in some teams; consistency and measurement across ARTs & Shared Services still to be validated.",
+   "rel": -640307
+  },
+  {
+   "entity_id": 5,
+   "focus_area_id": 405,
+   "score": 2,
+   "confidence": "med",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for qe coe, guilds & expert communities in ARTs & Shared Services.",
+   "rel": -111529
+  },
+  {
+   "entity_id": 5,
+   "focus_area_id": 501,
+   "score": 2,
+   "confidence": "high",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for continuous quality engineering in ARTs & Shared Services.",
+   "rel": -704607
+  },
+  {
+   "entity_id": 5,
+   "focus_area_id": 502,
+   "score": 2,
+   "confidence": "med",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for ai-augmented & agentic qe in ARTs & Shared Services.",
+   "rel": -294479
+  },
+  {
+   "entity_id": 5,
+   "focus_area_id": 504,
+   "score": 1,
+   "confidence": "high",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for production quality & observability in ARTs & Shared Services.",
+   "rel": -516616
+  },
+  {
+   "entity_id": 5,
+   "focus_area_id": 505,
+   "score": 1,
+   "confidence": "high",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for autonomous resilience engineering in ARTs & Shared Services.",
+   "rel": -344579
+  },
+  {
+   "entity_id": 6,
+   "focus_area_id": 101,
+   "score": 2,
+   "confidence": "med",
+   "notes": "New fare rules are specified in Confluence without testable acceptance criteria.",
+   "rel": -172800
+  },
+  {
+   "entity_id": 6,
+   "focus_area_id": 102,
+   "score": 3,
+   "confidence": "high",
+   "notes": "Contract tests with the new payment gateway are in place for 6 of 9 APIs.",
+   "rel": -172800
+  },
+  {
+   "entity_id": 6,
+   "focus_area_id": 103,
+   "score": 3,
+   "confidence": "high",
+   "notes": "API regression for fare calculation runs in the pipeline on every merge.",
+   "rel": -172800
+  },
+  {
+   "entity_id": 6,
+   "focus_area_id": 303,
+   "score": 3,
+   "confidence": "med",
+   "notes": "Pipeline blocks merges on failed API tests; no performance gate yet.",
+   "rel": -86400
+  },
+  {
+   "entity_id": 6,
+   "focus_area_id": 304,
+   "score": 2,
+   "confidence": "med",
+   "notes": "PCI scope for the new gateway not yet reflected in test evidence.",
+   "rel": -86400
+  },
+  {
+   "entity_id": 6,
+   "focus_area_id": 205,
+   "score": 2,
+   "confidence": "low",
+   "notes": "Cutover readiness criteria still being drafted.",
+   "rel": -72000
+  },
+  {
+   "entity_id": 7,
+   "focus_area_id": 103,
+   "score": 4,
+   "confidence": "high",
+   "notes": "Cypress suite of ~1,200 specs covers booking end to end and runs on every merge.",
+   "rel": -259200
+  },
+  {
+   "entity_id": 7,
+   "focus_area_id": 104,
+   "score": 2,
+   "confidence": "high",
+   "notes": "No load test since summer 2025; accessibility checked manually before major releases.",
+   "rel": -259200
+  },
+  {
+   "entity_id": 7,
+   "focus_area_id": 504,
+   "score": 2,
+   "confidence": "med",
+   "notes": "Uptime alerts only; no synthetic booking journey or SLOs.",
+   "rel": -172800
+  },
+  {
+   "entity_id": 7,
+   "focus_area_id": 204,
+   "score": 3,
+   "confidence": "med",
+   "notes": "Squad dashboard tracks pass rate and flakiness, not escaped defects.",
+   "rel": -172800
+  },
+  {
+   "entity_id": 8,
+   "focus_area_id": 103,
+   "score": 1,
+   "confidence": "high",
+   "notes": "No automation for the mobile app; releases tested by two technicians on site.",
+   "rel": -86400
+  },
+  {
+   "entity_id": 8,
+   "focus_area_id": 105,
+   "score": 1,
+   "confidence": "med",
+   "notes": "No device lab; testing relies on production-like tablets borrowed from crews.",
+   "rel": -86400
+  }
+ ],
+ "interviews": [
+  {
+   "entity_id": 1,
+   "date": "2026-10-06",
+   "stakeholder": "QE Lead, Reservations & Commerce ART",
+   "type": "Interview",
+   "status": "completed",
+   "notes": "Regression for the booking flow is about 40% automated with Selenium; the rest is manual and takes 4 days per release. Peak-load testing was last done before summer 2025 and nobody owns it. Defects are tracked in Jira and ageing is visible, but escaped defects are not measured. PCI evidence is pulled together manually from emails and spreadsheets each release. Release go/no-go is a judgement call by the PO; there are no defined exit criteria.",
+   "findings": null,
+   "focus_area_ids": [
+    103,
+    104,
+    203,
+    304,
+    205
+   ],
+   "rel": -950400
+  },
+  {
+   "entity_id": 2,
+   "date": "2026-10-07",
+   "stakeholder": "Engineering Manager, Digital Experience ART",
+   "type": "Interview",
+   "status": "completed",
+   "notes": "Cypress suite of about 1,200 tests runs nightly in GitHub Actions, but flakiness means ~30% of runs need reruns. Two squads are trialling a GenAI assistant for test case drafting with no shared guardrails. Each team has its own Jira dashboard; there is no cross-ART view. Most testing happens late in the sprint.",
+   "findings": null,
+   "focus_area_ids": [
+    103,
+    502,
+    204,
+    501
+   ],
+   "rel": -864000
+  },
+  {
+   "entity_id": 4,
+   "date": "2026-10-08",
+   "stakeholder": "EAM Platform Lead",
+   "type": "Interview",
+   "status": "completed",
+   "notes": "One shared Maximo test environment; refreshes take 3-4 weeks and block regression. A small Selenium pack covers work-order creation only. Test data is copied from production without masking. Regression cycles are coordinated by email with the vendor.",
+   "findings": null,
+   "focus_area_ids": [
+    105,
+    103,
+    202
+   ],
+   "rel": -777600
+  },
+  {
+   "entity_id": 3,
+   "date": "2026-10-09",
+   "stakeholder": "HRIS Application Manager",
+   "type": "Interview",
+   "status": "completed",
+   "notes": "Quarterly Oracle updates are regression-tested manually over about two weeks by business users. No automation. Test scope is decided ad hoc from Oracle release notes. There is no documented test standard for HCM.",
+   "findings": null,
+   "focus_area_ids": [
+    103,
+    201,
+    302
+   ],
+   "rel": -691200
+  },
+  {
+   "entity_id": 5,
+   "date": "2026-10-10",
+   "stakeholder": "Integration Architect, Shared Services",
+   "type": "Workshop",
+   "status": "completed",
+   "notes": "API tests exist for the integration layer in Postman but there are no contract tests with downstream partners. Pipelines have unit-test gates only; a failing gate can be overridden by any lead. Production monitoring exists for infrastructure but there are no SLOs for customer journeys.",
+   "findings": null,
+   "focus_area_ids": [
+    102,
+    303,
+    504
+   ],
+   "rel": -604800
+  },
+  {
+   "entity_id": 2,
+   "date": "2026-10-14",
+   "stakeholder": "Director, Digital Products",
+   "type": "Interview",
+   "status": "completed",
+   "notes": "There is no enterprise QE strategy; each ART decides its own approach. QE roles differ by vendor and are not defined internally. Release confidence is based on the regression pass rate and a demo to the business.",
+   "findings": null,
+   "focus_area_ids": [
+    301,
+    401,
+    205
+   ],
+   "rel": -518400
+  },
+  {
+   "entity_id": 1,
+   "date": "2026-10-15",
+   "stakeholder": "Payments Product Owner",
+   "type": "Interview",
+   "status": "completed",
+   "notes": "Payment provider changes are tested in a shared UAT environment. Synthetic monitoring is not in place for booking. Audit evidence is retained in SharePoint folders manually.",
+   "findings": null,
+   "focus_area_ids": [
+    304,
+    104,
+    504
+   ],
+   "rel": -432000
+  },
+  {
+   "entity_id": 5,
+   "date": "2026-10-19",
+   "stakeholder": "Head of Enterprise Architecture",
+   "type": "Interview",
+   "status": "scheduled",
+   "notes": "",
+   "findings": null,
+   "focus_area_ids": [
+    301,
+    305
+   ],
+   "rel": -345600
+  },
+  {
+   "entity_id": 4,
+   "date": "2026-10-20",
+   "stakeholder": "Fleet Maintenance IT Manager",
+   "type": "Interview",
+   "status": "scheduled",
+   "notes": "",
+   "findings": null,
+   "focus_area_ids": [
+    101,
+    203
+   ],
+   "rel": -259200
+  },
+  {
+   "entity_id": 3,
+   "date": "2026-10-21",
+   "stakeholder": "Payroll Business Lead",
+   "type": "Workshop",
+   "status": "scheduled",
+   "notes": "",
+   "findings": null,
+   "focus_area_ids": [
+    205
+   ],
+   "rel": -172800
+  },
+  {
+   "entity_id": 5,
+   "date": "2026-10-22",
+   "stakeholder": "CIO Office · Executive Sponsor check-in",
+   "type": "Interview",
+   "status": "scheduled",
+   "notes": "",
+   "findings": null,
+   "focus_area_ids": [
+    301
+   ],
+   "rel": -86400
+  },
+  {
+   "entity_id": 6,
+   "date": "2026-10-13",
+   "stakeholder": "Program Manager, Fare Modernization",
+   "type": "Interview",
+   "status": "completed",
+   "notes": "Fare rules are written in Confluence without testable acceptance criteria. Contract tests cover 6 of 9 payment gateway APIs and fare-calculation API regression runs on every merge. The pipeline blocks merges when API tests fail, but there is no performance gate. PCI scope for the new gateway is not yet reflected in test evidence. Cutover readiness criteria are still being drafted.",
+   "findings": null,
+   "focus_area_ids": [
+    101,
+    102,
+    103,
+    303,
+    304,
+    205
+   ],
+   "rel": -259200
+  },
+  {
+   "entity_id": 8,
+   "date": "2026-10-23",
+   "stakeholder": "EAM Mobile Lead",
+   "type": "Walkthrough",
+   "status": "scheduled",
+   "notes": "",
+   "findings": null,
+   "focus_area_ids": [
+    103,
+    105
+   ],
+   "rel": -21600
+  }
+ ],
+ "evidence": [
+  {
+   "entity_id": 1,
+   "name": "Reservations_Test_Strategy_v2.docx",
+   "kind": "link",
+   "doc_type": "Test strategy",
+   "summary": "Strategy dated 2024 covering functional and regression testing for reservations. No performance, accessibility or PCI evidence requirements defined.",
+   "signals": [],
+   "url": "",
+   "size": 20000,
+   "classified_by": "rules",
+   "focus_area_ids": [
+    301,
+    302,
+    201
+   ],
+   "rel": -853200
+  },
+  {
+   "entity_id": 1,
+   "name": "Regression_Results_PI24.xlsx",
+   "kind": "link",
+   "doc_type": "Execution results",
+   "summary": "412 regression cases, 39% automated; pass rate 91% with 4-day manual cycle per release.",
+   "signals": [],
+   "url": "",
+   "size": 27311,
+   "classified_by": "rules",
+   "focus_area_ids": [
+    103,
+    202,
+    205
+   ],
+   "rel": -766800
+  },
+  {
+   "entity_id": 1,
+   "name": "Jira_Defects_Export_Q3.csv",
+   "kind": "link",
+   "doc_type": "Defect export",
+   "summary": "1,184 defects in Q3; median age 19 days; 14% raised in production with no leakage metric tracked.",
+   "signals": [],
+   "url": "",
+   "size": 34622,
+   "classified_by": "manual",
+   "focus_area_ids": [
+    203,
+    204
+   ],
+   "rel": -680400
+  },
+  {
+   "entity_id": 2,
+   "name": "GitHub_Actions_Pipeline.yaml",
+   "kind": "link",
+   "doc_type": "Pipeline configuration",
+   "summary": "Nightly Cypress job and unit-test gate on PR; no performance or accessibility stages; gates can be bypassed.",
+   "signals": [],
+   "url": "",
+   "size": 41933,
+   "classified_by": "rules",
+   "focus_area_ids": [
+    303,
+    501,
+    103
+   ],
+   "rel": -594000
+  },
+  {
+   "entity_id": 2,
+   "name": "Cypress_Flaky_Test_Report.html",
+   "kind": "link",
+   "doc_type": "Execution results",
+   "summary": "Flaky-test analysis showing 31% rerun rate across 1,200 specs, concentrated in checkout.",
+   "signals": [],
+   "url": "",
+   "size": 49244,
+   "classified_by": "rules",
+   "focus_area_ids": [
+    103,
+    204
+   ],
+   "rel": -507600
+  },
+  {
+   "entity_id": 4,
+   "name": "Maximo_Env_Refresh_Log.txt",
+   "kind": "link",
+   "doc_type": "Environment/data",
+   "summary": "Five refreshes in 12 months, averaging 24 days each; production data copied without masking.",
+   "signals": [],
+   "url": "",
+   "size": 56555,
+   "classified_by": "manual",
+   "focus_area_ids": [
+    105
+   ],
+   "rel": -421200
+  },
+  {
+   "entity_id": 3,
+   "name": "Oracle_Quarterly_Update_Test_Plan.xlsx",
+   "kind": "link",
+   "doc_type": "Test plan",
+   "summary": "Manual test plan of 260 scripts executed by business users over 10 business days.",
+   "signals": [],
+   "url": "",
+   "size": 63866,
+   "classified_by": "rules",
+   "focus_area_ids": [
+    201,
+    103
+   ],
+   "rel": -334800
+  },
+  {
+   "entity_id": 5,
+   "name": "Postman_Integration_Collection.json",
+   "kind": "link",
+   "doc_type": "API test assets",
+   "summary": "186 API requests with assertions for the integration layer; no consumer-driven contracts.",
+   "signals": [],
+   "url": "",
+   "size": 71177,
+   "classified_by": "rules",
+   "focus_area_ids": [
+    102
+   ],
+   "rel": -248400
+  },
+  {
+   "entity_id": 5,
+   "name": "Observability_Stack_Overview.pdf",
+   "kind": "link",
+   "doc_type": "Architecture",
+   "summary": "Infrastructure monitoring in place; no journey-level SLOs or synthetic checks for booking.",
+   "signals": [],
+   "url": "",
+   "size": 78488,
+   "classified_by": "manual",
+   "focus_area_ids": [
+    504
+   ],
+   "rel": -162000
+  },
+  {
+   "entity_id": 2,
+   "name": "QE_Vendor_Roles_Matrix.xlsx",
+   "kind": "link",
+   "doc_type": "Skills/roles",
+   "summary": "Role definitions vary across three vendors; no internal proficiency model.",
+   "signals": [],
+   "url": "",
+   "size": 85799,
+   "classified_by": "rules",
+   "focus_area_ids": [
+    401,
+    402
+   ],
+   "rel": -75600
+  },
+  {
+   "entity_id": 6,
+   "name": "Payment_Gateway_Contract_Tests.json",
+   "kind": "link",
+   "doc_type": "API test assets",
+   "summary": "Pact contracts for 6 of 9 gateway endpoints, verified in CI on every merge.",
+   "signals": [],
+   "url": "",
+   "size": 41210,
+   "classified_by": "rules",
+   "focus_area_ids": [
+    102,
+    303
+   ],
+   "rel": -172800
+  }
+ ],
+ "activity": [
+  {
+   "kind": "scope",
+   "text": "added Maximo to scope",
+   "rel": -993600
+  },
+  {
+   "kind": "scope",
+   "text": "logged an interview with QE Lead, Reservations & Commerce ART (Booking & Payments)",
+   "rel": -864000
+  },
+  {
+   "kind": "scope",
+   "text": "published dashboard v1 (enterprise 2.1)",
+   "rel": -518400
+  },
+  {
+   "kind": "scope",
+   "text": "added “Jira_Defects_Export_Q3.csv” to Booking & Payments evidence (2 focus areas)",
+   "rel": -432000
+  },
+  {
+   "kind": "scope",
+   "text": "extracted 5 findings from the Director, Digital Products interview",
+   "rel": -172800
+  },
+  {
+   "kind": "scope",
+   "text": "applied an interview finding to Release Confidence Management (Digital Customer Journeys)",
+   "rel": -169200
+  },
+  {
+   "kind": "scope",
+   "text": "scheduled an interview with Head of Enterprise Architecture (ARTs & Shared Services)",
+   "rel": -86400
+  },
+  {
+   "kind": "scope",
+   "text": "logged an interview with Payments Product Owner (Booking & Payments)",
+   "rel": -72000
+  },
+  {
+   "kind": "scope",
+   "text": "scored Automated Quality Gates for ARTs & Shared Services: 2 · Managed",
+   "rel": -18000
+  },
+  {
+   "kind": "scope",
+   "text": "added “QE_Vendor_Roles_Matrix.xlsx” to Digital Customer Journeys evidence (2 focus areas)",
+   "rel": -7200
+  },
+  {
+   "kind": "scope",
+   "text": "added program Fare & Payments Modernization to scope under Booking & Payments",
+   "rel": -345600
+  },
+  {
+   "kind": "scope",
+   "text": "added application bcferries.com Booking Engine to scope under Digital Customer Journeys",
+   "rel": -259200
+  },
+  {
+   "kind": "scope",
+   "text": "extracted 6 findings from the Program Manager, Fare Modernization interview",
+   "rel": -255600
+  },
+  {
+   "kind": "scope",
+   "text": "scheduled a walkthrough with EAM Mobile Lead (Maximo Mobile)",
+   "rel": -21600
+  }
+ ],
+ "snapshots": [
+  {
+   "version": 1,
+   "note": "Week 2 baseline",
+   "narrative": "Baseline after the first week of interviews. Provisional enterprise QE maturity is 2.1 / 5, with Future-Ready QE and QE Talent & Enablement the least developed pillars. Early evidence points to gaps in Automation Engineering, Predictive Quality Intelligence, Production Quality & Observability. Coverage is still low, so these are hypotheses to test in the remaining interviews.",
+   "data": {
+    "overall": 2.0914602362684205,
+    "level": "Managed",
+    "coverage": 0.38,
+    "apps": 69,
+    "counts": {
+     "gap": 50,
+     "partial": 21,
+     "val": 54,
+     "strong": 0
+    },
+    "total": 125,
+    "interviews": 4,
+    "evidence": 6,
+    "evidence_gaps": 71,
+    "conflicts": 2,
+    "pillars": [
+     {
+      "name": "QE Engineering",
+      "short": "Engineering",
+      "color": 0,
+      "target": 3.5,
+      "score": 2.239130434782609
+     },
+     {
+      "name": "QE Delivery Management",
+      "short": "Delivery",
+      "color": 1,
+      "target": 3.5,
+      "score": 2.5217391304347827
+     },
+     {
+      "name": "Quality Governance",
+      "short": "Governance",
+      "color": 2,
+      "target": 3.5,
+      "score": 1.9855072463768115
+     },
+     {
+      "name": "QE Talent & Enablement",
+      "short": "Talent",
+      "color": 3,
+      "target": 3,
+      "score": 2.2823529411764705
+     },
+     {
+      "name": "Future-Ready QE",
+      "short": "Future-Ready",
+      "color": 4,
+      "target": 3,
+      "score": 1.4285714285714286
+     }
+    ],
+    "entities": [
+     {
+      "name": "Digital Customer Journeys",
+      "type": "lob",
+      "apps": 18,
+      "overall": 2.527777777777778,
+      "pillars": [
+       2.75,
+       2.3333333333333335,
+       2.5,
+       null,
+       null
+      ]
+     },
+     {
+      "name": "Booking & Payments",
+      "type": "lob",
+      "apps": 12,
+      "overall": 2.1133333333333333,
+      "pillars": [
+       2,
+       2.6666666666666665,
+       2,
+       2.4,
+       1.5
+      ]
+     },
+     {
+      "name": "Oracle HCM",
+      "type": "lob",
+      "apps": 6,
+      "overall": 1.5166666666666668,
+      "pillars": [
+       1.5,
+       1.5,
+       2.3333333333333335,
+       1.25,
+       1
+      ]
+     },
+     {
+      "name": "Maximo",
+      "type": "lob",
+      "apps": 9,
+      "overall": 2.375,
+      "pillars": [
+       2,
+       3,
+       2,
+       2.5,
+       null
+      ]
+     },
+     {
+      "name": "ARTs & Shared Services",
+      "type": "lob",
+      "apps": 24,
+      "overall": 2.0633333333333335,
+      "pillars": [
+       2.25,
+       2.6666666666666665,
+       1.5,
+       2.4,
+       1.5
+      ]
+     }
+    ],
+    "gaps": [
+     {
+      "name": "Automation Engineering",
+      "pillar": "Engineering",
+      "score": 1,
+      "rec": "Converge on a reusable automation framework and run regression in CI on every merge",
+      "status": "gap"
+     },
+     {
+      "name": "Predictive Quality Intelligence",
+      "pillar": "Future-Ready",
+      "score": 1,
+      "rec": "Introduce change-impact-based test selection using code and defect history",
+      "status": "gap"
+     },
+     {
+      "name": "Production Quality & Observability",
+      "pillar": "Future-Ready",
+      "score": 1,
+      "rec": "Define SLOs and synthetic monitoring for booking and check-in journeys",
+      "status": "gap"
+     },
+     {
+      "name": "Autonomous Resilience Engineering",
+      "pillar": "Future-Ready",
+      "score": 1,
+      "rec": "Run controlled resilience experiments on critical booking services",
+      "status": "gap"
+     },
+     {
+      "name": "Enterprise QE Strategy & Operating Model",
+      "pillar": "Governance",
+      "score": 1.5294117647058822,
+      "rec": "Define the enterprise QE operating model with clear quality accountabilities",
+      "status": "gap"
+     },
+     {
+      "name": "Engineering Standards & Guardrails",
+      "pillar": "Governance",
+      "score": 1.7333333333333334,
+      "rec": "Publish minimum QE standards and tailored guardrails by delivery type",
+      "status": "gap"
+     }
+    ],
+    "strengths": [
+     {
+      "name": "Release Confidence Management",
+      "score": 2.8,
+      "best": ""
+     },
+     {
+      "name": "Modern QE Roles & Skill Architecture",
+      "score": 2.7142857142857144,
+      "best": ""
+     },
+     {
+      "name": "Test Orchestration & Flow",
+      "score": 2.6666666666666665,
+      "best": ""
+     }
+    ],
+    "roadmap": {
+     "now": [
+      {
+       "name": "Enterprise QE Strategy & Operating Model",
+       "rec": "Define the enterprise QE operating model with clear quality accountabilities",
+       "score": 1.5294117647058822,
+       "target": 3.5
+      },
+      {
+       "name": "Engineering Standards & Guardrails",
+       "rec": "Publish minimum QE standards and tailored guardrails by delivery type",
+       "score": 1.7333333333333334,
+       "target": 3.5
+      },
+      {
+       "name": "Performance, Accessibility & Resilience",
+       "rec": "Institutionalize peak-season performance baselines and WCAG 2.2 AA checks per release",
+       "score": 2.1,
+       "target": 3.5
+      },
+      {
+       "name": "Quality Observability & Insights",
+       "rec": "Publish a shared quality dashboard with coverage, trend and leakage KPIs per LOB",
+       "score": 2.1666666666666665,
+       "target": 3.5
+      }
+     ],
+     "next": [
+      {
+       "name": "Automation Engineering",
+       "rec": "Converge on a reusable automation framework and run regression in CI on every merge",
+       "score": 1,
+       "target": 3.5
+      },
+      {
+       "name": "Production Quality & Observability",
+       "rec": "Define SLOs and synthetic monitoring for booking and check-in journeys",
+       "score": 1,
+       "target": 3
+      },
+      {
+       "name": "Quality Risk, Assurance & Compliance",
+       "rec": "Standardize assurance evidence and exception governance, starting with PCI-scoped systems",
+       "score": 1.8,
+       "target": 3.5
+      },
+      {
+       "name": "AI-Augmented & Agentic QE",
+       "rec": "Pilot GenAI-assisted test design and self-healing automation on one ART",
+       "score": 1.8571428571428572,
+       "target": 3
+      }
+     ],
+     "later": [
+      {
+       "name": "Predictive Quality Intelligence",
+       "rec": "Introduce change-impact-based test selection using code and defect history",
+       "score": 1,
+       "target": 3
+      },
+      {
+       "name": "Autonomous Resilience Engineering",
+       "rec": "Run controlled resilience experiments on critical booking services",
+       "score": 1,
+       "target": 3
+      },
+      {
+       "name": "Portfolio, Partner & Value Governance",
+       "rec": "Introduce partner quality SLAs and QE value tracking at portfolio level",
+       "score": 2,
+       "target": 3.5
+      },
+      {
+       "name": "Continuous Quality Engineering",
+       "rec": "Shift testing in-sprint with continuous verification in the pipeline",
+       "score": 2,
+       "target": 3
+      }
+     ]
+    },
+    "scale": [
+     "Initial",
+     "Managed",
+     "Defined",
+     "Measured",
+     "Optimized"
+    ]
+   },
+   "rel": -518400
+  }
+ ]
+}

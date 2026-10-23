@@ -25,7 +25,12 @@ from .common import check_entity, focus_areas_for, not_found
 
 log = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/engagements/{eid}/evidence", tags=["evidence"])
-BLOCKED_EXT = {".exe", ".bat", ".cmd", ".com", ".msi", ".ps1", ".sh", ".dll", ".scr", ".js", ".vbs", ".jar"}
+# Allow list of evidence types: office documents (without macros), PDF, plain-text formats and images.
+ALLOWED_EXT = {
+    ".docx", ".doc", ".xlsx", ".xls", ".pptx", ".ppt", ".vsdx", ".pdf", ".rtf", ".odt", ".ods", ".odp",
+    ".txt", ".md", ".csv", ".tsv", ".json", ".yaml", ".yml", ".xml", ".log", ".feature", ".ini", ".cfg", ".properties",
+    ".png", ".jpg", ".jpeg", ".gif",
+}
 
 
 def _dir(eid: int) -> Path:
@@ -73,8 +78,10 @@ async def upload(eid: int, entity_id: int | None = Form(None), files: list[Uploa
     limit = settings.max_upload_mb * 1024 * 1024
     for up in files:
         name = _safe_name(up.filename or "file")
-        if Path(name).suffix.lower() in BLOCKED_EXT:
-            raise HTTPException(status.HTTP_400_BAD_REQUEST, f"{name}: executable and script files are not accepted as evidence.")
+        if Path(name).suffix.lower() not in ALLOWED_EXT:
+            raise HTTPException(status.HTTP_400_BAD_REQUEST,
+                                f"{name}: this file type isn't accepted. Upload documents (Word, Excel, PowerPoint, PDF), "
+                                "text or data files (txt, md, csv, json, yaml, xml) or images (png, jpg).")
         stored = f"{secrets.token_hex(8)}_{name}"
         dest = _dir(eid) / stored
         size = 0
@@ -84,14 +91,14 @@ async def upload(eid: int, entity_id: int | None = Form(None), files: list[Uploa
                 if size > limit:
                     fh.close()
                     dest.unlink(missing_ok=True)
-                    raise HTTPException(status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
+                    raise HTTPException(status.HTTP_413_CONTENT_TOO_LARGE,
                                         f"{name} is larger than {settings.max_upload_mb} MB.")
                 fh.write(chunk)
         text = extract_text(dest, name)
         cls = provider.classify_evidence(name, text, refs)
         ev = Evidence(engagement_id=eid, entity_id=ent.id if ent else None, name=name, kind="file",
                       doc_type=cls.doc_type, summary=cls.summary, signals=cls.signals, stored_name=stored,
-                      content_type=up.content_type or mimetypes.guess_type(name)[0] or "application/octet-stream",
+                      content_type=mimetypes.guess_type(name)[0] or "application/octet-stream",
                       size=size, text_excerpt=text[:20000], classified_by=provider.name, created_by=user.id)
         ev.focus_areas = focus_areas_for(db, eid, cls.focus_area_ids)
         db.add(ev)

@@ -37,6 +37,8 @@ The first start takes about a minute while it sets up a private Python environme
 | **Dashboards** | Live draft report. **Publish** freezes a numbered version with an editable executive summary; versions trend over time. **Print / save as PDF** produces a clean report. |
 | **Framework** | Edit pillars, focus areas, guiding questions, recommendations, roadmap horizons, maturity level definitions, targets, weights and status thresholds, per engagement. |
 
+**Who sees what:** each engagement is visible to administrators, the person who created it, and the people added under **Scope & Entities → Engagement team**.
+
 **Roles:** *Administrator* has full access, plus users and deleting engagements. *Assessor* can capture data, edit scope and framework, and publish. *Viewer* can read everything and use the analyst.
 
 ---
@@ -68,6 +70,11 @@ Copy `.env.example` to `.env` and uncomment what you need:
 | `QEC_COOKIE_SECURE` | `false` | Set `true` when served over HTTPS |
 | `QEC_MAX_UPLOAD_MB` | `25` | Largest evidence file |
 | `QEC_AI_PROVIDER` | `rules` | Analysis engine (see below) |
+| `QEC_IDLE_MINUTES` | `60` | Sign out after this many minutes without activity (`0` turns it off) |
+| `QEC_REQUIRE_MFA` | `false` | `true` makes every user set up two-step verification before they can work |
+| `QEC_TLS_CERT` / `QEC_TLS_KEY` | none | Certificate and key files (PEM) to serve HTTPS directly, without a reverse proxy |
+| `QEC_TRUSTED_PROXIES` | `127.0.0.1` | Addresses of reverse proxies whose `X-Forwarded-For/Proto` headers are trusted |
+| `QEC_API_DOCS` | `false` | `true` serves interactive API documentation at `/api/docs` (development only) |
 
 **Locked out?** From the `backend` folder run `..\.venv\Scripts\python -m app reset-password --email you@example.com` (on macOS/Linux use `../.venv/bin/python`). `create-admin` and `load-sample` work the same way.
 
@@ -94,7 +101,7 @@ When the client's environment is known:
 - **Docker + PostgreSQL:** set `QEC_DB_PASSWORD` in `deploy/.env`, then run `docker compose -f deploy/docker-compose.yml up -d --build`. The image builds the front end and runs as a non-root user, and database migrations run automatically at start-up.
 - **Any Linux VM:** install Python 3.10+, set `QEC_DATABASE_URL`, install `deploy/requirements-postgres.txt` alongside `backend/requirements.txt`, and run `python -m app` from `backend` under systemd.
 - **Azure / AWS / Kubernetes:** use the same container with managed PostgreSQL. Mount persistent storage at `/data` for uploads.
-- Put it behind the client's HTTPS reverse proxy or load balancer, and set `QEC_COOKIE_SECURE=true`.
+- Serve it over HTTPS: either behind the client's reverse proxy or load balancer (set `QEC_COOKIE_SECURE=true` and `QEC_TRUSTED_PROXIES` to the proxy's address), or directly with `QEC_TLS_CERT` and `QEC_TLS_KEY`.
 - Carry engagements across with JSON export/import.
 
 ---
@@ -102,11 +109,16 @@ When the client's environment is known:
 ## Security notes
 
 - **Passwords:** hashed with scrypt; at least 10 characters, mixed case and a number.
-- **Sign-in:** 5 failed attempts lock that email for 15 minutes. Sessions are server-side, revocable, HttpOnly, SameSite=Strict cookies, and only a hash of each session token is stored.
-- **Request checks:** state-changing requests require a custom header (CSRF defence). A strict Content-Security-Policy and anti-framing headers are applied.
-- **Uploads:** executable and script files are rejected, and stored files are served only to signed-in users.
+- **Two-step verification:** each user can turn it on under **My account** with any authenticator app (Microsoft Authenticator, Google Authenticator and others). Set `QEC_REQUIRE_MFA=true` to require it for everyone. An administrator can reset it for someone who loses their phone (**Users → Reset two-step**).
+- **Sign-in limits:** 5 failed attempts lock that account for 15 minutes, and 20 from one network address block that address. Limits are stored in the database, so a restart doesn't clear them.
+- **Sessions:** server-side, revocable, HttpOnly, SameSite=Strict cookies; only a hash of each token is stored. Sessions end after 60 minutes without activity (`QEC_IDLE_MINUTES`) and after 12 hours in any case. Cookies are marked Secure automatically over HTTPS.
+- **Engagement access:** people only see engagements they created or were added to; administrators see all.
+- **Security log:** sign-ins (successful, failed and blocked), sign-outs, password and two-step changes, user and role changes, engagement access changes, deletions and exports are kept permanently in **Users → Security log** and written to the server log for collection by a SIEM.
+- **Request checks:** state-changing requests require a custom header (CSRF defence). A strict Content-Security-Policy, HSTS (over HTTPS), anti-framing and permissions headers are applied, and the server version header is off.
+- **Uploads:** only document, text, data and image types are accepted (no executables, scripts, macros, HTML or archives); files are stored under random names and always downloaded as attachments, to signed-in users only. Evidence links must be http(s).
+- **No outbound connections:** the platform calls no external services; fonts and scripts are bundled.
 - **Audit trail:** every score change is kept in the assessment history, and every change appears in the activity log.
-- **Not yet built:** SSO (Entra ID), per-engagement access control and at-rest encryption. These are natural next steps for a client-hosted deployment.
+- **Hosting responsibilities:** encryption at rest (encrypted disk, or PostgreSQL storage encryption), backups, malware scanning of the uploads folder, and single sign-on through the client's identity provider are provided by the hosting environment. See `docs/` for the security review pack.
 
 ---
 
@@ -114,7 +126,7 @@ When the client's environment is known:
 
 ```
 backend/    FastAPI + SQLAlchemy + Alembic (Python)
-  app/routers/      REST API (/api/docs when running)
+  app/routers/      REST API (/api/docs when QEC_API_DOCS=true)
   app/analytics.py  roll-up scoring, coverage, gaps, conflicts, snapshots
   app/ai/           provider interface + offline rules engine
   migrations/       database migrations (applied automatically at start)
@@ -133,3 +145,9 @@ deploy/     Dockerfile and docker-compose for server hosting
 - **Setup fails on a corporate network:** pip needs your proxy. Run `set HTTPS_PROXY=http://proxy:port` (Windows) or `export HTTPS_PROXY=…` before `start.bat` / `start.sh`.
 - **Port 8000 in use:** set `QEC_PORT=8010` in `.env`.
 - **Start over:** stop the app and delete the `data` folder. The next start is a fresh installation.
+- **Locked out of two-step verification:** an administrator can use **Users → Reset two-step**. If you are the only administrator, run `..\.venv\Scripts\python -m app reset-password --email you@example.com --clear-mfa` from the `backend` folder.
+- **"This database was opened by the QE Compass v1.1 preview" / "Can't locate revision 0002":** copy the `data` folder somewhere safe, then from the folder with `start.bat` run once:
+  ```
+  .venv\Scripts\python -c "import sqlite3;c=sqlite3.connect('data/qecompass.db');[c.execute(f'DROP TABLE IF EXISTS {t}') for t in ('survey_questions','surveys','questions')];c.execute(\"UPDATE alembic_version SET version_num='0001'\");c.commit();print('done')"
+  ```
+  It removes only the preview's survey tables; everything else is kept.

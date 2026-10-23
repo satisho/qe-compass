@@ -57,6 +57,13 @@ class Settings:
     ai_provider: str = _env("AI_PROVIDER", "rules")
     host: str = _env("HOST", "127.0.0.1")
     port: int = int(_env("PORT", "8000"))
+    # security (v1.0.1)
+    idle_minutes: int = int(_env("IDLE_MINUTES", "60"))
+    require_mfa: bool = _bool("REQUIRE_MFA", False)
+    tls_cert: str = _env("TLS_CERT", "")
+    tls_key: str = _env("TLS_KEY", "")
+    trusted_proxies: str = _env("TRUSTED_PROXIES", "127.0.0.1")
+    api_docs: bool = _bool("API_DOCS", False)
 
     def __post_init__(self) -> None:
         url = _env("DATABASE_URL", "") or f"sqlite:///{(self.data_dir / 'qecompass.db').as_posix()}"

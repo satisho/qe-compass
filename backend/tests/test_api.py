@@ -134,12 +134,17 @@ def test_analyst_snapshot_export_import(admin):
 
 def test_roles(admin, engagement):
     eid = engagement["id"]
-    admin.post("/api/users", json={"name": "Vic Viewer", "email": "viewer@example.com", "role": "viewer",
-                                   "password": "Viewer12345A"}, expect=201)
+    vid = admin.post("/api/users", json={"name": "Vic Viewer", "email": "viewer@example.com", "role": "viewer",
+                                         "password": "Viewer12345A"}, expect=201).json()["id"]
     with TestClient(app) as tc2:
         v = Client(tc2)
         v.post("/api/auth/login", json={"email": "viewer@example.com", "password": "Viewer12345A"}, expect=200)
         assert v.get("/api/auth/me").json()["must_change_password"] is True
+        # not a member yet: the engagement is invisible
+        assert v.get(f"/api/engagements/{eid}/workspace", expect=None).status_code == 404
+        assert all(e["id"] != eid for e in v.get("/api/engagements").json())
+        admin.post(f"/api/engagements/{eid}/members", json={"user_id": vid}, expect=201)
+        assert any(e["id"] == eid for e in v.get("/api/engagements").json())
         v.get(f"/api/engagements/{eid}/workspace")
         assert v.post(f"/api/engagements/{eid}/entities", json={"name": "X"}).status_code == 403
         assert v.get("/api/users", expect=None).status_code == 403

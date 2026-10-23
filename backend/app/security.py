@@ -48,3 +48,50 @@ def password_problem(password: str) -> str | None:
     if password.lower() == password or password.upper() == password or not any(c.isdigit() for c in password):
         return "Mix upper- and lower-case letters and include a number."
     return None
+
+
+# ---- two-step verification: time-based one-time passwords (RFC 6238) ------
+import struct
+import time as _time
+
+TOTP_PERIOD, TOTP_DIGITS = 30, 6
+
+
+def new_totp_secret() -> str:
+    return base64.b32encode(secrets.token_bytes(20)).decode().rstrip("=")
+
+
+def _hotp(secret: str, counter: int) -> str:
+    key = base64.b32decode(secret + "=" * (-len(secret) % 8), casefold=True)
+    digest = hmac.new(key, struct.pack(">Q", counter), hashlib.sha1).digest()
+    offset = digest[-1] & 0x0F
+    code = (struct.unpack(">I", digest[offset:offset + 4])[0] & 0x7FFFFFFF) % 10**TOTP_DIGITS
+    return str(code).zfill(TOTP_DIGITS)
+
+
+def totp_now(secret: str, at: float | None = None) -> str:
+    return _hotp(secret, int((at if at is not None else _time.time()) // TOTP_PERIOD))
+
+
+def verify_totp(secret: str, code: str, last_step: int | None = None, at: float | None = None) -> int | None:
+    """Return the matched time step (so callers can block reuse), or None.
+
+    Accepts one step of clock drift either way, and never a step at or before `last_step`.
+    """
+    code = "".join(ch for ch in (code or "") if ch.isdigit())
+    if len(code) != TOTP_DIGITS:
+        return None
+    now = int((at if at is not None else _time.time()) // TOTP_PERIOD)
+    for step in (now - 1, now, now + 1):
+        if last_step is not None and step <= last_step:
+            continue
+        if hmac.compare_digest(_hotp(secret, step), code):
+            return step
+    return None
+
+
+def totp_uri(secret: str, email: str, issuer: str = "QE Compass") -> str:
+    from urllib.parse import quote
+
+    return (f"otpauth://totp/{quote(issuer)}:{quote(email)}?secret={secret}&issuer={quote(issuer)}"
+            f"&algorithm=SHA1&digits={TOTP_DIGITS}&period={TOTP_PERIOD}")

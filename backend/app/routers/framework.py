@@ -24,7 +24,7 @@ def update_settings(body: FrameworkSettingsIn, eng: Engagement = Depends(get_eng
     cur = {**DEFAULT_SETTINGS, **(eng.settings or {})}
     data = body.model_dump(exclude_none=True)
     if "thresholds" in data and data["thresholds"]["gap"] >= data["thresholds"]["strong"]:
-        raise HTTPException(status.HTTP_422_UNPROCESSABLE_ENTITY, "The gap threshold must be below the strength threshold.")
+        raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, "The gap threshold must be below the strength threshold.")
     cur.update(data)
     eng.settings = cur
     what = ", ".join({"scale": "maturity scale", "thresholds": "status thresholds", "weighting": "roll-up weighting"}[k] for k in data)

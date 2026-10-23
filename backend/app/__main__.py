@@ -2,7 +2,7 @@
 
 Administrative commands:
   python -m app create-admin --email you@example.com --name "Your Name"
-  python -m app reset-password --email you@example.com
+  python -m app reset-password --email you@example.com [--clear-mfa]
   python -m app load-sample
 """
 from __future__ import annotations
@@ -21,11 +21,14 @@ def _serve(args: argparse.Namespace) -> None:
     from .config import settings
 
     host, port = args.host or settings.host, args.port or settings.port
-    url = f"http://{'localhost' if host in ('127.0.0.1', '0.0.0.0') else host}:{port}"
+    tls = bool(settings.tls_cert and settings.tls_key)
+    url = f"{'https' if tls else 'http'}://{'localhost' if host in ('127.0.0.1', '0.0.0.0') else host}:{port}"
     if args.open:
         threading.Thread(target=lambda: (time.sleep(2.0), webbrowser.open(url)), daemon=True).start()
     print(f"\n  QE Compass is starting at {url}\n  Press Ctrl+C to stop.\n", flush=True)
-    uvicorn.run("app.main:app", host=host, port=port, log_level="info", proxy_headers=True)
+    extra = {"ssl_certfile": settings.tls_cert, "ssl_keyfile": settings.tls_key} if tls else {}
+    uvicorn.run("app.main:app", host=host, port=port, log_level="info", proxy_headers=True,
+                forwarded_allow_ips=settings.trusted_proxies, server_header=False, **extra)
 
 
 def _ask_password(confirm: bool = True) -> str:
@@ -73,6 +76,8 @@ def _reset(args: argparse.Namespace) -> None:
         if not u:
             sys.exit("No user with that email.")
         u.password_hash, u.active = hash_password(_ask_password()), True
+        if args.clear_mfa:
+            u.mfa_enabled, u.mfa_secret, u.mfa_last_step = False, None, None
         db.execute(delete(UserSession).where(UserSession.user_id == u.id))
         db.commit()
     print(f"Password reset for {args.email}. The account is active.")
@@ -100,6 +105,7 @@ def main() -> None:
     a.add_argument("--name", required=True)
     r = sub.add_parser("reset-password")
     r.add_argument("--email", required=True)
+    r.add_argument("--clear-mfa", action="store_true", help="also turn off two-step verification (lost phone)")
     sub.add_parser("load-sample")
     args = p.parse_args()
     {"create-admin": _create_admin, "reset-password": _reset, "load-sample": _sample}.get(args.cmd, _serve)(args)

@@ -22,6 +22,19 @@ class Strict(BaseModel):
 class LoginIn(Strict):
     email: str = Field(max_length=255)
     password: str = Field(max_length=500)
+    code: str | None = Field(default=None, max_length=20)  # two-step verification code, when enabled
+
+
+class MfaCodeIn(Strict):
+    code: str = Field(max_length=20)
+
+
+class MfaDisableIn(Strict):
+    password: str = Field(max_length=500)
+
+
+class MemberIn(Strict):
+    user_id: int
 
 
 class SetupIn(Strict):
@@ -55,7 +68,7 @@ class ResetPasswordIn(Strict):
 def user_out(u: m.User) -> dict:
     return {
         "id": u.id, "email": u.email, "name": u.name, "role": u.role, "active": u.active,
-        "must_change_password": u.must_change_password,
+        "must_change_password": u.must_change_password, "mfa_enabled": bool(u.mfa_enabled),
         "created_at": u.created_at, "last_login_at": u.last_login_at,
     }
 
@@ -233,6 +246,13 @@ class LinkEvidenceIn(Strict):
     name: str = Field(min_length=1, max_length=400)
     url: str = Field(default="", max_length=1000)
     doc_type: str = Field(default="Linked document", max_length=100)
+
+    @field_validator("url")
+    @classmethod
+    def _web_link(cls, v: str) -> str:
+        if v and not v.lower().startswith(("https://", "http://")):
+            raise ValueError("links must start with https:// or http://")
+        return v
     summary: str = Field(default="", max_length=5000)
     focus_area_ids: list[int] = Field(default_factory=list, max_length=200)
 

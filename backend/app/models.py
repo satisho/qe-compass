@@ -22,6 +22,7 @@ from sqlalchemy import (
     Text,
     UniqueConstraint,
     Boolean,
+    false,
 )
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -48,6 +49,10 @@ class User(Base):
     must_change_password: Mapped[bool] = mapped_column(Boolean, default=False)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
     last_login_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
+    # two-step verification (TOTP). The secret is set during setup and only used once mfa_enabled is true.
+    mfa_enabled: Mapped[bool] = mapped_column(Boolean, default=False, server_default=false())
+    mfa_secret: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    mfa_last_step: Mapped[int | None] = mapped_column(Integer, nullable=True)  # blocks code replay
 
 
 class UserSession(Base):
@@ -57,7 +62,30 @@ class UserSession(Base):
     token_hash: Mapped[str] = mapped_column(String(128), unique=True, index=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
     expires_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    last_seen_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
     user: Mapped[User] = relationship()
+
+
+class SecurityEvent(Base):
+    """Append-only security audit log: sign-ins, account and access changes, exports."""
+
+    __tablename__ = "security_events"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow, index=True)
+    kind: Mapped[str] = mapped_column(String(40), index=True)
+    user_id: Mapped[int | None] = mapped_column(ForeignKey("users.id", ondelete="SET NULL"), nullable=True)
+    email: Mapped[str] = mapped_column(String(255), default="", index=True)
+    ip: Mapped[str] = mapped_column(String(64), default="", index=True)
+    detail: Mapped[str] = mapped_column(String(1000), default="")
+
+
+class EngagementMember(Base):
+    """Who may open an engagement. Administrators and the engagement's creator always can."""
+
+    __tablename__ = "engagement_members"
+    engagement_id: Mapped[int] = mapped_column(ForeignKey("engagements.id", ondelete="CASCADE"), primary_key=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), primary_key=True)
+    added_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utcnow)
 
 
 class Engagement(Base):

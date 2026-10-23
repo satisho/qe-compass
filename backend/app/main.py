@@ -6,16 +6,17 @@ from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 from pathlib import Path
 
-from fastapi import FastAPI, Request
+from fastapi import Depends, FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 from .config import settings
+from .deps import engagement_access
 from .migrate import upgrade
 from .routers import analysis, assessments, auth, engagements, entities, evidence, exports, framework, interviews, users
 
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 log = logging.getLogger("qecompass")
 
@@ -31,8 +32,12 @@ async def lifespan(_: FastAPI) -> AsyncIterator[None]:
     yield
 
 
-app = FastAPI(title="QE Compass", version=__version__, docs_url="/api/docs", openapi_url="/api/openapi.json",
-              redoc_url=None, lifespan=lifespan)
+# API documentation is off unless QEC_API_DOCS=true. OpenTelemetry auto-export is pinned off:
+# the platform makes no outbound connections.
+_docs = settings.api_docs
+app = FastAPI(title="QE Compass", version=__version__, docs_url="/api/docs" if _docs else None,
+              openapi_url="/api/openapi.json" if _docs else None, redoc_url=None, lifespan=lifespan,
+              telemetry={"auto_configure": False})
 
 
 @app.middleware("http")
@@ -51,6 +56,9 @@ async def security_headers(request: Request, call_next):  # noqa: ANN001, ANN201
         "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; "
         "font-src 'self' data:; connect-src 'self'; frame-ancestors 'none'",
     )
+    if request.url.scheme == "https":
+        response.headers.setdefault("Strict-Transport-Security", "max-age=31536000")
+    response.headers.setdefault("Permissions-Policy", "camera=(), microphone=(), geolocation=()")
     if request.url.path.startswith("/api/"):
         response.headers.setdefault("Cache-Control", "no-store")
     return response
@@ -63,8 +71,12 @@ async def _validation(_: Request, exc: RequestValidationError) -> JSONResponse:
     return JSONResponse({"detail": f"{field}: {first.get('msg', 'invalid value')}"}, status_code=422)
 
 
-for r in (auth, users, engagements, framework, entities, assessments, interviews, evidence, analysis, exports):
-    app.include_router(r.router)
+app.include_router(auth.router)
+app.include_router(users.router)
+app.include_router(users.security_router)
+# every route with an {eid} in its path checks the signed-in user may open that engagement
+for r in (engagements, framework, entities, assessments, interviews, evidence, analysis, exports):
+    app.include_router(r.router, dependencies=[Depends(engagement_access)])
 
 
 @app.get("/api/health")

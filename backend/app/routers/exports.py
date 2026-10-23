@@ -11,15 +11,15 @@ import csv
 import io
 from datetime import date, datetime
 
-from fastapi import APIRouter, Depends, File, HTTPException, UploadFile, status
+from fastapi import APIRouter, Depends, File, HTTPException, Request, UploadFile, status
 from fastapi.responses import Response
 from sqlalchemy import select
 from sqlalchemy.orm import Session, selectinload
 
-from .. import activity
+from .. import activity, audit
 from ..analytics import STATUS_LABEL, load_workspace
 from ..db import get_db
-from ..deps import get_engagement, require_writer
+from ..deps import current_user, get_engagement, require_writer
 from ..models import (
     Activity, Assessment, Engagement, Entity, Evidence, FocusArea, Interview, Pillar, Snapshot, User,
 )
@@ -36,7 +36,9 @@ def _fname(eng: Engagement, ext: str) -> str:
 
 
 @router.get("/{eid}/export.csv")
-def export_csv(eng: Engagement = Depends(get_engagement), db: Session = Depends(get_db)) -> Response:
+def export_csv(request: Request, eng: Engagement = Depends(get_engagement), db: Session = Depends(get_db),
+               user: User = Depends(current_user)) -> Response:
+    audit.record_now(db, "data_export", request, user=user, detail=f"CSV scores · #{eng.id} {eng.title}")
     ws = load_workspace(db, eng)
     buf = io.StringIO()
     w = csv.writer(buf)
@@ -61,7 +63,9 @@ def _iso(v):  # noqa: ANN001, ANN202
 
 
 @router.get("/{eid}/export.json")
-def export_json(eng: Engagement = Depends(get_engagement), db: Session = Depends(get_db)) -> Response:
+def export_json(request: Request, eng: Engagement = Depends(get_engagement), db: Session = Depends(get_db),
+                user: User = Depends(current_user)) -> Response:
+    audit.record_now(db, "data_export", request, user=user, detail=f"JSON engagement · #{eng.id} {eng.title}")
     import json
 
     pillars = db.scalars(select(Pillar).where(Pillar.engagement_id == eng.id).options(selectinload(Pillar.focus_areas)))
@@ -193,7 +197,7 @@ async def import_json(file: UploadFile = File(...), db: Session = Depends(get_db
 
     raw = await file.read()
     if len(raw) > 50 * 1024 * 1024:
-        raise HTTPException(status.HTTP_413_REQUEST_ENTITY_TOO_LARGE, "Import files must be under 50 MB.")
+        raise HTTPException(status.HTTP_413_CONTENT_TOO_LARGE, "Import files must be under 50 MB.")
     try:
         doc = json.loads(raw.decode("utf-8-sig"))
         eng = import_document(db, doc, user.id, " (imported)")
@@ -201,6 +205,6 @@ async def import_json(file: UploadFile = File(...), db: Session = Depends(get_db
         db.commit()
     except (ValueError, KeyError, TypeError) as exc:
         db.rollback()
-        raise HTTPException(status.HTTP_422_UNPROCESSABLE_ENTITY,
+        raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT,
                             str(exc) if isinstance(exc, ValueError) else "The file is missing required fields.") from exc
     return {"id": eng.id, "title": eng.title}

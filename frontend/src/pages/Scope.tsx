@@ -3,6 +3,7 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { api, download } from "../api";
 import { Page } from "../components/Layout";
+import { EngagementTeam } from "../components/Team";
 import { ConfirmButton, Drawer, EType, EntitySelect, Loading } from "../components/ui";
 import { useAuth } from "../lib/auth";
 import { ETYPE, fmt } from "../lib/format";
@@ -63,6 +64,7 @@ export function Scope() {
           <div className="field" style={{ justifyContent: "flex-end" }}><button className="btn primary" type="submit" disabled={!canWrite || saveMeta.isPending}>Save engagement</button></div>
         </form>
       </section>
+      <EngagementTeam eid={eid} />
 
       <section className="card pad">
         <div className="sec-h">

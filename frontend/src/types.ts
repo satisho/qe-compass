@@ -11,6 +11,7 @@ export interface User {
   role: Role;
   active: boolean;
   must_change_password: boolean;
+  mfa_enabled: boolean;
   created_at: string;
   last_login_at: string | null;
 }
@@ -215,4 +216,18 @@ export interface SnapshotMeta {
 export interface Snapshot extends SnapshotMeta {
   narrative: string;
   data: SnapshotData;
+}
+
+/** The signed-in user plus the installation's sign-in policy. */
+export type Me = User & { require_mfa?: boolean; idle_minutes?: number };
+
+export interface SecurityEvent {
+  id: number;
+  created_at: string;
+  kind: string;
+  label: string;
+  user_id: number | null;
+  email: string;
+  ip: string;
+  detail: string;
 }

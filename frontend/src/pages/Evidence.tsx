@@ -138,7 +138,7 @@ function EvidenceDrawer({ eid, m, ev, onClose }: { eid: number; m: Model; ev: Ev
         {ev.size > 0 && <><dt>Size</dt><dd className="mono">{bytes(ev.size)}</dd></>}
         <dt>Classified by</dt><dd>{ev.classified_by === "rules" ? "Built-in analysis engine" : ev.classified_by === "manual" ? "Assessor" : ev.classified_by || "—"}</dd>
         {ev.has_file && <><dt>File</dt><dd><button className="btn sm" onClick={() => download(`${url}/file`)}>Download</button></dd></>}
-        {ev.url && <><dt>Link</dt><dd><a href={ev.url} target="_blank" rel="noopener noreferrer">{ev.url}</a></dd></>}
+        {ev.url && <><dt>Link</dt><dd>{/^https?:\/\//i.test(ev.url) ? <a href={ev.url} target="_blank" rel="noopener noreferrer">{ev.url}</a> : ev.url}</dd></>}
       </dl>
       <div className="field"><label htmlFor="ev-ent">Entity</label><EntitySelect m={m} id="ev-ent" value={entity} onChange={(v) => setEntity(v as number | null)} emptyLabel="Not set" style={{ width: "100%" }} /></div>
       <div className="field"><label htmlFor="ev-sum">Summary</label><textarea className="inp" id="ev-sum" disabled={!canWrite} value={summary} onChange={(e) => setSummary(e.target.value)} /></div>

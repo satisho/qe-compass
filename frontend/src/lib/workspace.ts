@@ -26,8 +26,12 @@ export function useSnapshots(eid: number) {
   return useQuery({ queryKey: ["snapshots", eid], queryFn: () => api.get<SnapshotMeta[]>(`${base(eid)}/snapshots`) });
 }
 export function useDirectory() {
-  const q = useQuery({ queryKey: ["directory"], queryFn: () => api.get<{ id: number; name: string }[]>("/api/users/directory"), staleTime: 60_000 });
+  const q = useDirectoryList();
   return useMemo(() => new Map((q.data || []).map((u) => [u.id, u.name])), [q.data]);
+}
+
+export function useDirectoryList() {
+  return useQuery({ queryKey: ["directory"], queryFn: () => api.get<{ id: number; name: string; role: string; active: boolean }[]>("/api/users/directory"), staleTime: 60_000 });
 }
 
 /** Mutation that refreshes the workspace-derived queries and reports errors as toasts. */

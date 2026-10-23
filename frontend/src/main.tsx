@@ -40,14 +40,14 @@ function EngagementRedirect() {
 }
 
 function Root() {
-  const { user, loading } = useAuth();
+  const { user, loading, needsMfaSetup } = useAuth();
   if (loading) return <Loading what="Starting QE Compass…" />;
   if (!user) return <Login />;
   return (
     <Routes>
       <Route element={<Layout />}>
-        {user.must_change_password ? (
-          <Route path="*" element={<Account forced />} />
+        {user.must_change_password || needsMfaSetup ? (
+          <Route path="*" element={<Account forced={user.must_change_password ? "password" : "mfa"} />} />
         ) : (
           <>
             <Route index element={<Engagements />} />
@@ -76,7 +76,7 @@ createRoot(document.getElementById("root")!).render(
     <QueryClientProvider client={qc}>
       <ToastProvider>
         <AuthProvider>
-          <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+          <BrowserRouter>
             <Root />
           </BrowserRouter>
         </AuthProvider>

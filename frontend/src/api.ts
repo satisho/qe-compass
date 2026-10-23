@@ -18,7 +18,7 @@ async function handle<T>(res: Response): Promise<T> {
   } catch {
     /* non-JSON error body */
   }
-  if (res.status === 401) window.dispatchEvent(new CustomEvent("qec:unauthorized"));
+  if (res.status === 401 && !res.url.includes("/api/auth/login")) window.dispatchEvent(new CustomEvent("qec:unauthorized", { detail: message }));
   throw new ApiError(res.status, message);
 }
 

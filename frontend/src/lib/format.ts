@@ -29,9 +29,14 @@ export const HORIZON: Record<string, [string, string]> = {
 
 export const pillarColor = (color: number) => `var(--p${(((color % 7) + 7) % 7) + 1})`;
 
+/* Server timestamps are UTC. SQLite returns them without a zone, so treat a zone-less date-time as UTC. */
+export function ts(s: string): Date {
+  return new Date(/T\d{2}:\d{2}/.test(s) && !/(Z|[+-]\d{2}:?\d{2})$/.test(s) ? `${s}Z` : s);
+}
+
 export function ago(iso: string | null | undefined): string {
   if (!iso) return "";
-  const t = new Date(iso).getTime();
+  const t = ts(iso).getTime();
   const d = (Date.now() - t) / 1000;
   if (d < 60) return "just now";
   if (d < 3600) return `${Math.floor(d / 60)}m ago`;
@@ -42,12 +47,12 @@ export function ago(iso: string | null | undefined): string {
 
 export function fdate(s: string | null | undefined): string {
   if (!s) return "";
-  const d = new Date(s.length === 10 ? `${s}T12:00:00` : s);
+  const d = s.length === 10 ? new Date(`${s}T12:00:00`) : ts(s);
   return Number.isNaN(d.getTime()) ? s : d.toLocaleDateString("en-CA", { month: "short", day: "numeric", year: "numeric" });
 }
 
 export function fdatetime(s: string): string {
-  return new Date(s).toLocaleString("en-CA", { dateStyle: "medium", timeStyle: "short" });
+  return ts(s).toLocaleString("en-CA", { dateStyle: "medium", timeStyle: "short" });
 }
 
 export const today = () => new Date().toISOString().slice(0, 10);

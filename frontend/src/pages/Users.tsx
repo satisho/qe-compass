@@ -5,7 +5,7 @@ import { api } from "../api";
 import { Page } from "../components/Layout";
 import { Drawer, Loading } from "../components/ui";
 import { useAuth } from "../lib/auth";
-import { ago } from "../lib/format";
+import { ago, ts } from "../lib/format";
 import { useToast } from "../lib/toast";
 import type { Role, SecurityEvent, User } from "../types";
 
@@ -105,7 +105,7 @@ function SecurityLog() {
           <thead><tr><th>When</th><th>Event</th><th>Account</th><th>Address</th><th>Detail</th></tr></thead>
           <tbody>{q.data.map((e) => (
             <tr key={e.id}>
-              <td className="small" style={{ whiteSpace: "nowrap" }} title={new Date(e.created_at).toLocaleString()}>{ago(e.created_at)}</td>
+              <td className="small" style={{ whiteSpace: "nowrap" }} title={ts(e.created_at).toLocaleString()}>{ago(e.created_at)}</td>
               <td className="small"><span className={`badge ${/failed|blocked|rejected/.test(e.kind) ? "warn" : ""}`}>{e.label}</span></td>
               <td className="small">{e.email || "—"}</td>
               <td className="small mono muted">{e.ip || "—"}</td>

@@ -396,4 +396,4 @@ code{font-family:var(--f-mono);font-size:.92em;background:var(--surface2);paddin
 .notice{border-radius:10px;padding:10px 14px;font-size:13px;background:color-mix(in srgb,var(--partial) 14%,transparent);border:1px solid color-mix(in srgb,var(--partial) 40%,transparent)}
 .badge.err{background:color-mix(in srgb,var(--gap) 15%,transparent);color:var(--gap)}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-@media print{.side,.top .chips,.no-print,.toasts{display:none!important}.app{display:block}.view{padding:0}.card{box-shadow:none;break-inside:avoid}body{background:#fff}}
+@media print{.side,.top .chips,.no-print,.toasts{display:none!important}.app{display:block}.view{padding:0}.card{box-shadow:none;break-inside:avoid}body{background:#fff}.card.report{break-inside:auto;border:0}.report svg,.report tr,.report li,.report .kpis,.report .exec{break-inside:avoid}.report h3{break-after:avoid}body:has(.report) .top{display:none!important}}

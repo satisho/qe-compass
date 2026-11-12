@@ -16,7 +16,7 @@ from .deps import engagement_access
 from .migrate import upgrade
 from .routers import analysis, assessments, auth, engagements, entities, evidence, exports, framework, interviews, users
 
-__version__ = "1.0.1"
+__version__ = "2.0.1"
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 log = logging.getLogger("qecompass")
 

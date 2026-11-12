@@ -1,4 +1,4 @@
-"""BC Ferries sample engagement (illustrative data), shifted so it always looks current."""
+"""Sample engagement for a fictional client (illustrative data), shifted so it always looks current."""
 from __future__ import annotations
 
 import json
@@ -11,7 +11,8 @@ from sqlalchemy.orm import Session
 from ..models import Activity, Assessment, Engagement, Entity, Evidence, FocusArea, Interview, Snapshot
 from ..templates import DEFAULT_SETTINGS, FRAMEWORK, apply_template
 
-SAMPLE = Path(__file__).with_name("sample_bcferries.json")
+SAMPLE = Path(__file__).with_name("sample_engagement.json")
+SAMPLE_CLIENT = "Northwind Sample Co."  # fictional; rename the engagement to show it under another name
 ANCHOR = date(2026, 10, 16)  # the day the sample data was authored
 KEYS = [p[0] for p in FRAMEWORK]
 
@@ -25,7 +26,7 @@ def create_sample(db: Session, user_id: int | None) -> Engagement:
     def at(rel: int) -> datetime:
         return now + timedelta(seconds=rel)
 
-    eng = Engagement(client="BC Ferries", title="Enterprise Quality Engineering Discovery (sample)",
+    eng = Engagement(client=SAMPLE_CLIENT, title="Enterprise Quality Engineering Discovery (sample)",
                      start_date=today - timedelta(days=16), weeks=8, interviews_planned=32,
                      settings=dict(DEFAULT_SETTINGS), created_by=user_id)
     db.add(eng)
@@ -72,7 +73,7 @@ def create_sample(db: Session, user_id: int | None) -> Engagement:
                 "evidence" if "evidence" in text else "report" if "published" in text else
                 "assessment" if "scored" in text else "scope")
         db.add(Activity(engagement_id=eng.id, kind=kind, text=text, created_at=at(a["rel"])))
-    db.add(Activity(engagement_id=eng.id, user_id=user_id, kind="scope", text="loaded the BC Ferries sample engagement",
+    db.add(Activity(engagement_id=eng.id, user_id=user_id, kind="scope", text="loaded the sample engagement",
                     created_at=now))
     db.commit()
     return eng

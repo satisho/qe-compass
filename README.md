@@ -19,7 +19,7 @@ The first start takes about a minute while it sets up a private Python environme
 ### First run
 
 1. **Create the administrator account.** The first person to open a new installation becomes its administrator.
-2. **Engagements → Load BC Ferries sample** to explore with illustrative data, or **Start a new engagement** for real work. New engagements get the standard 5-pillar / 25-focus-area framework.
+2. **Engagements → Load sample engagement** to explore with illustrative data for a fictional client, or **Start a new engagement** for real work. New engagements get the standard 5-pillar / 25-focus-area framework.
 3. **Users** (admin only) → add your team as *Assessors* (capture and edit) or *Viewers* (read-only). Each person sets their own password on first sign-in.
 
 ---
@@ -118,7 +118,7 @@ When the client's environment is known:
 - **Uploads:** only document, text, data and image types are accepted (no executables, scripts, macros, HTML or archives); files are stored under random names and always downloaded as attachments, to signed-in users only. Evidence links must be http(s).
 - **No outbound connections:** the platform calls no external services; fonts and scripts are bundled.
 - **Audit trail:** every score change is kept in the assessment history, and every change appears in the activity log.
-- **Hosting responsibilities:** encryption at rest (encrypted disk, or PostgreSQL storage encryption), backups, malware scanning of the uploads folder, and single sign-on through the client's identity provider are provided by the hosting environment. See `docs/` for the security review pack.
+- **Hosting responsibilities:** encryption at rest (encrypted disk, or PostgreSQL storage encryption), backups, malware scanning of the uploads folder, and single sign-on through the client's identity provider are provided by the hosting environment. A security review pack can be produced for each client.
 
 ---
 

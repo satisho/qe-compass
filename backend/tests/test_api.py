@@ -60,7 +60,7 @@ def test_template_and_entities_rollup(admin, engagement):
 
 def test_interview_extract_and_apply(admin, engagement):
     eid = engagement["id"]
-    lob = admin.post(f"/api/engagements/{eid}/entities", json={"name": "Maximo"}, expect=201).json()
+    lob = admin.post(f"/api/engagements/{eid}/entities", json={"name": "Field Service"}, expect=201).json()
     notes = ("Regression is mostly manual and takes two weeks per release; automation covers only work orders. "
              "One shared test environment; refreshes take 3-4 weeks and block regression. "
              "Defects are tracked in Jira but escaped defects to production are not measured.")
@@ -114,7 +114,7 @@ def test_analyst_snapshot_export_import(admin):
     assert w["analytics"]["enterprise"]["overall"] is not None
     for q in ["Where are the biggest gaps?", "What evidence is still missing?", "Draft follow-up interview questions",
               "Any conflicting signals?", "Quick wins for the next 90 days", "Write an executive summary",
-              "How is Maximo doing on automation engineering?", "compare entities"]:
+              "How is Enterprise Asset Mgmt doing on automation engineering?", "compare entities"]:
         r = admin.post(f"/api/engagements/{eid}/analyst", json={"question": q}, expect=200).json()
         assert r["answer"].startswith("## "), (q, r["answer"][:80])
     snaps = admin.get(f"/api/engagements/{eid}/snapshots").json()

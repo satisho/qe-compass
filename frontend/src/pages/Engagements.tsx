@@ -30,7 +30,7 @@ export function Engagements() {
   });
   const sample = useMutation({
     mutationFn: () => api.post<Engagement>("/api/engagements/sample"),
-    onSuccess: (e) => done(e, "BC Ferries sample engagement loaded"),
+    onSuccess: (e) => done(e, "Sample engagement loaded"),
     onError: (e: Error) => toast(e.message, "error"),
   });
   const imp = useMutation({
@@ -63,7 +63,7 @@ export function Engagements() {
         </section>
       ) : (
         <Empty title="No engagements yet">
-          Create the first engagement below{isAdmin ? ", or load the BC Ferries sample to explore the platform" : ""}.
+          Create the first engagement below{isAdmin ? ", or load the sample engagement to explore the platform" : ""}.
         </Empty>
       )}
 
@@ -71,7 +71,7 @@ export function Engagements() {
         <section className="card pad">
           <div className="sec-h"><div><h2>Start a new engagement</h2><p>Begins with the standard 5-pillar, 25-focus-area framework, which you can tailor afterwards</p></div></div>
           <form className="fgrid" onSubmit={submit}>
-            <div className="field"><label htmlFor="ne-client">Client</label><input className="inp" id="ne-client" required value={f.client} onChange={(e) => setF({ ...f, client: e.target.value })} placeholder="e.g. BC Ferries" /></div>
+            <div className="field"><label htmlFor="ne-client">Client</label><input className="inp" id="ne-client" required value={f.client} onChange={(e) => setF({ ...f, client: e.target.value })} placeholder="e.g. Contoso Ltd" /></div>
             <div className="field"><label htmlFor="ne-title">Engagement</label><input className="inp" id="ne-title" required value={f.title} onChange={(e) => setF({ ...f, title: e.target.value })} /></div>
             <div className="field"><label htmlFor="ne-start">Start date (week 1)</label><input className="inp" id="ne-start" type="date" required value={f.start_date} onChange={(e) => setF({ ...f, start_date: e.target.value })} /></div>
             <div className="field"><label htmlFor="ne-weeks">Duration (weeks)</label><input className="inp" id="ne-weeks" type="number" min={1} max={52} value={f.weeks} onChange={(e) => setF({ ...f, weeks: Number(e.target.value) })} /></div>
@@ -81,7 +81,7 @@ export function Engagements() {
           <div className="row" style={{ marginTop: 16, paddingTop: 14, borderTop: "1px solid var(--line)" }}>
             <button className="btn" onClick={() => fileRef.current?.click()} disabled={imp.isPending}>Import from export file</button>
             <input ref={fileRef} type="file" accept=".json,application/json" hidden onChange={(e) => { const file = e.target.files?.[0]; e.target.value = ""; if (file) imp.mutate(file); }} />
-            {isAdmin && <button className="btn" onClick={() => sample.mutate()} disabled={sample.isPending}>Load BC Ferries sample</button>}
+            {isAdmin && <button className="btn" onClick={() => sample.mutate()} disabled={sample.isPending}>Load sample engagement</button>}
             <span className="small muted">Imports bring in an engagement exported from another QE Compass installation.</span>
           </div>
         </section>

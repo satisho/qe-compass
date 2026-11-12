@@ -4,7 +4,7 @@ import { api, download } from "../api";
 import { Page } from "../components/Layout";
 import { Drawer, Loading, Markdown, NoScope, Radar, StatusPill, Trend } from "../components/ui";
 import { useAuth } from "../lib/auth";
-import { HORIZON, fdatetime, fmt, pillarColor, weekOf } from "../lib/format";
+import { HORIZON, fdatetime, fmt, pillarColor, ts, weekOf } from "../lib/format";
 import { base, useDirectory, useEid, useModel, useMut, useSnapshots, useWorkspace } from "../lib/workspace";
 import type { Snapshot, SnapshotData, Status } from "../types";
 
@@ -46,7 +46,7 @@ export function Dashboards() {
           <div className="vers" role="group" aria-label="Version">
             <button aria-pressed={sel === "live"} onClick={() => setSel("live")}>Live draft<small>Updates as the team works</small></button>
             {[...list].reverse().map((x) => (
-              <button key={x.id} aria-pressed={sel === x.id} onClick={() => setSel(x.id)}>v{x.version} · {fmt(x.overall)}<small>{x.note} · {new Date(x.created_at).toLocaleDateString("en-CA", { month: "short", day: "numeric" })}</small></button>
+              <button key={x.id} aria-pressed={sel === x.id} onClick={() => setSel(x.id)}>v{x.version} · {fmt(x.overall)}<small>{x.note} · {ts(x.created_at).toLocaleDateString("en-CA", { month: "short", day: "numeric" })}</small></button>
             ))}
           </div>
           <div><Trend points={trend} /></div>

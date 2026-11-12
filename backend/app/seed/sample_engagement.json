@@ -38,9 +38,9 @@
    "id": 4,
    "parent_id": null,
    "type": "lob",
-   "name": "Maximo",
+   "name": "Enterprise Asset Mgmt",
    "apps": 9,
-   "art": "Fleet & Terminal Asset Mgmt",
+   "art": "Field & Facilities Asset Mgmt",
    "owner": "EAM Platform Lead",
    "criticality": "High",
    "position": 3
@@ -60,10 +60,10 @@
    "id": 6,
    "parent_id": 1,
    "type": "program",
-   "name": "Fare & Payments Modernization",
+   "name": "Pricing & Payments Modernization",
    "apps": 4,
    "art": "Reservations & Commerce ART",
-   "owner": "Program Manager, Fare Modernization",
+   "owner": "Program Manager, Pricing Modernization",
    "criticality": "High",
    "position": 5
   },
@@ -71,7 +71,7 @@
    "id": 7,
    "parent_id": 2,
    "type": "app",
-   "name": "bcferries.com Booking Engine",
+   "name": "Online Booking Engine",
    "apps": 1,
    "art": "Digital Experience ART",
    "owner": "Product Owner, Booking Web",
@@ -82,9 +82,9 @@
    "id": 8,
    "parent_id": 4,
    "type": "app",
-   "name": "Maximo Mobile (Fleet Technicians)",
+   "name": "Field Service Mobile (Technicians)",
    "apps": 1,
-   "art": "Fleet & Terminal Asset Mgmt",
+   "art": "Field & Facilities Asset Mgmt",
    "owner": "EAM Mobile Lead",
    "criticality": "Medium",
    "position": 7
@@ -120,7 +120,7 @@
    "focus_area_id": 104,
    "score": 2,
    "confidence": "high",
-   "notes": "Peak-load test last run before the 2025 summer season; no baseline yet for long-weekend sailing demand.",
+   "notes": "Peak-load test last run before the 2025 summer season; no baseline yet for long-weekend peak demand.",
    "rel": -354341
   },
   {
@@ -576,7 +576,7 @@
    "focus_area_id": 101,
    "score": 1,
    "confidence": "med",
-   "notes": "Practice is largely manual and varies by team. No shared standard observed for testability & quality-by-design in Maximo.",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for testability & quality-by-design in Enterprise Asset Mgmt.",
    "rel": -174024
   },
   {
@@ -584,7 +584,7 @@
    "focus_area_id": 102,
    "score": 2,
    "confidence": "low",
-   "notes": "Practice is largely manual and varies by team. No shared standard observed for end-to-end, api & integration quality in Maximo.",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for end-to-end, api & integration quality in Enterprise Asset Mgmt.",
    "rel": -197126
   },
   {
@@ -600,7 +600,7 @@
    "focus_area_id": 104,
    "score": 2,
    "confidence": "high",
-   "notes": "Practice is largely manual and varies by team. No shared standard observed for performance, accessibility & resilience in Maximo.",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for performance, accessibility & resilience in Enterprise Asset Mgmt.",
    "rel": -136350
   },
   {
@@ -616,7 +616,7 @@
    "focus_area_id": 202,
    "score": 3,
    "confidence": "med",
-   "notes": "Defined in some teams; consistency and measurement across Maximo still to be validated.",
+   "notes": "Defined in some teams; consistency and measurement across Enterprise Asset Mgmt still to be validated.",
    "rel": -497001
   },
   {
@@ -624,7 +624,7 @@
    "focus_area_id": 203,
    "score": 3,
    "confidence": "low",
-   "notes": "Defined in some teams; consistency and measurement across Maximo still to be validated.",
+   "notes": "Defined in some teams; consistency and measurement across Enterprise Asset Mgmt still to be validated.",
    "rel": -151626
   },
   {
@@ -632,7 +632,7 @@
    "focus_area_id": 204,
    "score": 2,
    "confidence": "med",
-   "notes": "Practice is largely manual and varies by team. No shared standard observed for quality observability & insights in Maximo.",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for quality observability & insights in Enterprise Asset Mgmt.",
    "rel": -474026
   },
   {
@@ -640,7 +640,7 @@
    "focus_area_id": 301,
    "score": 2,
    "confidence": "low",
-   "notes": "Practice is largely manual and varies by team. No shared standard observed for enterprise qe strategy & operating model in Maximo.",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for enterprise qe strategy & operating model in Enterprise Asset Mgmt.",
    "rel": -161265
   },
   {
@@ -648,7 +648,7 @@
    "focus_area_id": 302,
    "score": 2,
    "confidence": "high",
-   "notes": "Practice is largely manual and varies by team. No shared standard observed for engineering standards & guardrails in Maximo.",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for engineering standards & guardrails in Enterprise Asset Mgmt.",
    "rel": -577181
   },
   {
@@ -656,7 +656,7 @@
    "focus_area_id": 303,
    "score": 2,
    "confidence": "med",
-   "notes": "Practice is largely manual and varies by team. No shared standard observed for automated quality gates in Maximo.",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for automated quality gates in Enterprise Asset Mgmt.",
    "rel": -701211
   },
   {
@@ -664,7 +664,7 @@
    "focus_area_id": 304,
    "score": 2,
    "confidence": "high",
-   "notes": "Practice is largely manual and varies by team. No shared standard observed for quality risk, assurance & compliance in Maximo.",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for quality risk, assurance & compliance in Enterprise Asset Mgmt.",
    "rel": -618442
   },
   {
@@ -672,7 +672,7 @@
    "focus_area_id": 305,
    "score": 3,
    "confidence": "med",
-   "notes": "Defined in some teams; consistency and measurement across Maximo still to be validated.",
+   "notes": "Defined in some teams; consistency and measurement across Enterprise Asset Mgmt still to be validated.",
    "rel": -135985
   },
   {
@@ -680,7 +680,7 @@
    "focus_area_id": 401,
    "score": 2,
    "confidence": "med",
-   "notes": "Practice is largely manual and varies by team. No shared standard observed for modern qe roles & skill architecture in Maximo.",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for modern qe roles & skill architecture in Enterprise Asset Mgmt.",
    "rel": -320005
   },
   {
@@ -688,7 +688,7 @@
    "focus_area_id": 402,
    "score": 2,
    "confidence": "med",
-   "notes": "Practice is largely manual and varies by team. No shared standard observed for capability intelligence & gap analysis in Maximo.",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for capability intelligence & gap analysis in Enterprise Asset Mgmt.",
    "rel": -169150
   },
   {
@@ -696,7 +696,7 @@
    "focus_area_id": 403,
    "score": 2,
    "confidence": "high",
-   "notes": "Practice is largely manual and varies by team. No shared standard observed for continuous learning & enablement in Maximo.",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for continuous learning & enablement in Enterprise Asset Mgmt.",
    "rel": -250529
   },
   {
@@ -704,7 +704,7 @@
    "focus_area_id": 404,
    "score": 3,
    "confidence": "med",
-   "notes": "Defined in some teams; consistency and measurement across Maximo still to be validated.",
+   "notes": "Defined in some teams; consistency and measurement across Enterprise Asset Mgmt still to be validated.",
    "rel": -662064
   },
   {
@@ -712,7 +712,7 @@
    "focus_area_id": 405,
    "score": 2,
    "confidence": "high",
-   "notes": "Practice is largely manual and varies by team. No shared standard observed for qe coe, guilds & expert communities in Maximo.",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for qe coe, guilds & expert communities in Enterprise Asset Mgmt.",
    "rel": -521063
   },
   {
@@ -720,7 +720,7 @@
    "focus_area_id": 505,
    "score": 1,
    "confidence": "high",
-   "notes": "Practice is largely manual and varies by team. No shared standard observed for autonomous resilience engineering in Maximo.",
+   "notes": "Practice is largely manual and varies by team. No shared standard observed for autonomous resilience engineering in Enterprise Asset Mgmt.",
    "rel": -493086
   },
   {
@@ -912,7 +912,7 @@
    "focus_area_id": 101,
    "score": 2,
    "confidence": "med",
-   "notes": "New fare rules are specified in Confluence without testable acceptance criteria.",
+   "notes": "New pricing rules are specified in Confluence without testable acceptance criteria.",
    "rel": -172800
   },
   {
@@ -928,7 +928,7 @@
    "focus_area_id": 103,
    "score": 3,
    "confidence": "high",
-   "notes": "API regression for fare calculation runs in the pipeline on every merge.",
+   "notes": "API regression for price calculation runs in the pipeline on every merge.",
    "rel": -172800
   },
   {
@@ -1044,7 +1044,7 @@
    "stakeholder": "EAM Platform Lead",
    "type": "Interview",
    "status": "completed",
-   "notes": "One shared Maximo test environment; refreshes take 3-4 weeks and block regression. A small Selenium pack covers work-order creation only. Test data is copied from production without masking. Regression cycles are coordinated by email with the vendor.",
+   "notes": "One shared Enterprise Asset Mgmt test environment; refreshes take 3-4 weeks and block regression. A small Selenium pack covers work-order creation only. Test data is copied from production without masking. Regression cycles are coordinated by email with the vendor.",
    "findings": null,
    "focus_area_ids": [
     105,
@@ -1130,7 +1130,7 @@
   {
    "entity_id": 4,
    "date": "2026-10-20",
-   "stakeholder": "Fleet Maintenance IT Manager",
+   "stakeholder": "Field Maintenance IT Manager",
    "type": "Interview",
    "status": "scheduled",
    "notes": "",
@@ -1170,10 +1170,10 @@
   {
    "entity_id": 6,
    "date": "2026-10-13",
-   "stakeholder": "Program Manager, Fare Modernization",
+   "stakeholder": "Program Manager, Pricing Modernization",
    "type": "Interview",
    "status": "completed",
-   "notes": "Fare rules are written in Confluence without testable acceptance criteria. Contract tests cover 6 of 9 payment gateway APIs and fare-calculation API regression runs on every merge. The pipeline blocks merges when API tests fail, but there is no performance gate. PCI scope for the new gateway is not yet reflected in test evidence. Cutover readiness criteria are still being drafted.",
+   "notes": "Fare rules are written in Confluence without testable acceptance criteria. Contract tests cover 6 of 9 payment gateway APIs and price-calculation API regression runs on every merge. The pipeline blocks merges when API tests fail, but there is no performance gate. PCI scope for the new gateway is not yet reflected in test evidence. Cutover readiness criteria are still being drafted.",
    "findings": null,
    "focus_area_ids": [
     101,
@@ -1286,7 +1286,7 @@
   },
   {
    "entity_id": 4,
-   "name": "Maximo_Env_Refresh_Log.txt",
+   "name": "Enterprise Asset Mgmt_Env_Refresh_Log.txt",
    "kind": "link",
    "doc_type": "Environment/data",
    "summary": "Five refreshes in 12 months, averaging 24 days each; production data copied without masking.",
@@ -1381,7 +1381,7 @@
  "activity": [
   {
    "kind": "scope",
-   "text": "added Maximo to scope",
+   "text": "added Enterprise Asset Mgmt to scope",
    "rel": -993600
   },
   {
@@ -1431,22 +1431,22 @@
   },
   {
    "kind": "scope",
-   "text": "added program Fare & Payments Modernization to scope under Booking & Payments",
+   "text": "added program Pricing & Payments Modernization to scope under Booking & Payments",
    "rel": -345600
   },
   {
    "kind": "scope",
-   "text": "added application bcferries.com Booking Engine to scope under Digital Customer Journeys",
+   "text": "added application Online Booking Engine to scope under Digital Customer Journeys",
    "rel": -259200
   },
   {
    "kind": "scope",
-   "text": "extracted 6 findings from the Program Manager, Fare Modernization interview",
+   "text": "extracted 6 findings from the Program Manager, Pricing Modernization interview",
    "rel": -255600
   },
   {
    "kind": "scope",
-   "text": "scheduled a walkthrough with EAM Mobile Lead (Maximo Mobile)",
+   "text": "scheduled a walkthrough with EAM Mobile Lead (Enterprise Asset Mgmt Mobile)",
    "rel": -21600
   }
  ],
@@ -1549,7 +1549,7 @@
       ]
      },
      {
-      "name": "Maximo",
+      "name": "Enterprise Asset Mgmt",
       "type": "lob",
       "apps": 9,
       "overall": 2.375,

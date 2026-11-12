@@ -164,6 +164,6 @@ def test_headers_and_api_docs(admin):
     assert admin.get("/api/docs", expect=None).status_code == 404
     assert admin.get("/api/openapi.json", expect=None).status_code == 404
     r = admin.get("/api/health")
-    assert r.json()["version"] == "2.0.1"
+    assert r.json()["version"] == "2.0.0"
     for h in ("content-security-policy", "x-frame-options", "x-content-type-options", "referrer-policy", "permissions-policy"):
         assert h in r.headers

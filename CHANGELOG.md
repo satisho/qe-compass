@@ -1,12 +1,5 @@
 # Changelog
 
-## 2.0.1 (2026-11-11): report printing fixes
-
-- **Print / save as PDF** no longer leaves a nearly blank first page: the report flows across pages, while charts,
-  table rows and list items stay whole, and the page title is left out of the printout.
-- **Times** are shown in your own time zone. With the default SQLite database, publish times, "last active" and the
-  version list were shown in UTC as if they were local time.
-
 ## 2.0.0 (2026-11-11): client-neutral release
 
 QE Compass 2.0 is ready to use with any client. Every 1.0.1 feature and security control is kept.
@@ -18,6 +11,10 @@ QE Compass 2.0 is ready to use with any client. Every 1.0.1 feature and security
 - The 1.0.1 security review PDF, written for one client, is no longer shipped; produce a new one per client if needed.
 - Each engagement already carries its own client name, so one installation can hold engagements for several clients;
   the engagement team controls who sees each one.
+- **Print / save as PDF** no longer leaves a nearly blank first page: the report flows across pages, while charts,
+  table rows and list items stay whole, and the page title is left out of the printout.
+- **Times** are shown in your own time zone. With the default SQLite database, publish times, "last active" and the
+  version list were shown in UTC as if they were local time.
 - Upgrading from 1.0.x: unzip over the old folder (keep `data` and `.env`). Existing engagements are untouched.
 
 ## 1.0.1 (2026-10-23): security release
